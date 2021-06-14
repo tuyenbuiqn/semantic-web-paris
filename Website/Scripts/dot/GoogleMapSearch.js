@@ -131,8 +131,9 @@ function InitRightMenu() {
         callback: SearchMapByCoordinate       // réf. fonction appelée
     });
 };
+
 function InitObjectTypeCategory(data) {
-    $("#tmplObjectTypes").tmpl(data).appendTo("#divObjectTypes");
+   // $("#tmplObjectTypes").tmpl(data).appendTo("#divObjectTypes");
 };
 
 // End Region Initials
@@ -166,6 +167,7 @@ function SetCenterLocation(map, markerData, position) {
         //map.panTo(new google.maps.LatLng(position.Latitude, position.Longitude));
     }
 };
+
 function SetCenterByLatLng(labelId, latitude, longitude) {
     var position = new google.maps.LatLng(latitude, longitude);
     map.panTo(position);
@@ -176,10 +178,12 @@ function SetCenterByLatLng(labelId, latitude, longitude) {
         }
     }
 }
+
 function ToggleSearchMenu() {
     $("#divSearchMenu").fadeToggle("fast");
     $("#divHideAll").fadeToggle("fast");
 };
+
 function ShowSearchMenu(searchType) {
     showOrHideElement("pnlSearchBy" + searchType, "block");
     ToggleSearchMenu();
@@ -243,6 +247,7 @@ function SetAutocompleteSearchFrom() {
         }
     });
 }
+
 function SetAutocompleteSearchTo() {
     var input = document.getElementById("searchTo");
     var autocomplete = new google.maps.places.Autocomplete(input);
@@ -288,6 +293,7 @@ function SetMarkersContent(bounds, map, marker, data, i, infowindow) {
         }
     })(marker, i));
 };
+
 function getSearchResult(data, type) {
     $("#divSearchResultContainer").html("");
     showOrHideElement("divSearchResultWrapper", "block");
@@ -366,7 +372,6 @@ function GetDistanceFromSearch(cLat, cLng, destinationData, index) {
     });
 }
 
-
 function ResetSearchForm() {
     $("#objectNameSearch").val("");
     $("#ddlDistrict").val("-1").trigger("change");
@@ -390,6 +395,7 @@ function InitForm() {
     //    $("#objectNameSearch").focus();
     //}
 }
+
 function GetWards() {
     var wardParentId = parseInt($("#ddlDistrict").val());
     var parameter = {
@@ -408,6 +414,7 @@ function GetWards() {
     LoadIoTSelect("/Department/Map/GetAdministrativeDivisionParent", parameter, "divWard");
     //LoadIoTSelect('@Html.Raw(Url.Action("GetAdministrativeDivisionParent", "Map"))',parameter,"divWard");
 };
+
 function GetStreets() {
     var ddlDistrict = GetSelect2Data("ddlDistrict");
     var mapSelectedProvinceId = 37;
@@ -428,6 +435,7 @@ function GetStreets() {
     LoadIoTSelect("/Department/Map/GetStreet", parameter, "divStreet");
     //LoadIoTSelect('@Html.Raw(Url.Action("GetStreets", "Map"))', parameter, "divStreet");
 };
+
 function DistrictChange() {
     GetWards();
     GetStreets();
@@ -443,11 +451,13 @@ function ObjectTypeClick(id) {
         item.addClass("t-map-object-type-item-selected");
     }
 };
+
 function MapMultiMedia(objectTypeId, objectId, isDisableControl, selectType, mediaType) {
     var parameter = { ObjectTypeId: objectTypeId, ObjectId: objectId, IsDisableControl: isDisableControl, SelectType: selectType, Type: mediaType, IsGoogleMapView: true };
     ShowPopupAddOrEditMultiMedia("/Department/Multimedia/GetObjectMultiMedia", parameter, "MultiMediaMapObject", "Đa phương tiện", isDisableControl);
     //ShowPopupAddOrEditMultiMedia('@Url.Action("GetObjectMultiMedia", "Multimedia")', parameter, "MultiMediaMapObject", "Đa phương tiện", isDisableControl);
 };
+
 function SearchMapByCoordinate(param) {
     var objectTypeIds = "";
     $("#divObjectTypes a.t-map-object-type-item-selected").each(function (index) {
@@ -585,6 +595,7 @@ function SearchMapByCoordinate(param) {
             break;
     }
 }
+
 function SearchMapByPolygon(polygonData) {
     var objectTypeIds = "";
     $("#divObjectTypes a.t-map-object-type-item-selected").each(function (index) {
@@ -634,6 +645,7 @@ function GetMapDirection(sLat, sLng, lat, lng) {
     }
     );
 }
+
 function CreateCircleMarkerSearch(latLng, radius) {
     cityCircle = new google.maps.Circle({
         strokeColor: "#3b84f9",
@@ -661,6 +673,7 @@ function CreateCircleMarkerSearch(latLng, radius) {
 
     map.panTo(new google.maps.LatLng(latLng.lat(), latLng.lng()));
 }
+
 function RemoveCicleMarker() {
     markerOfCircle.setMap(null);
     cityCircle.setMap(null);
@@ -668,51 +681,53 @@ function RemoveCicleMarker() {
 
 function SearchMapByObjectOrAdDiv(searchType) {
     RemoveMapItemsByType(MAP_TYPE_DEFAULT_SEARCH);
-    var districtId = GetSelect2Data("ddlDistrict").id;
-    var wardId = GetSelect2Data("ddlWard").id;
-    var streetId = GetSelect2Data("ddlStreet").id;
-    var objectNameSearch = $("#objectNameSearch").val().trim();
+    //var districtId = GetSelect2Data("ddlDistrict").id;
+    //var wardId = GetSelect2Data("ddlWard").id;
+    //var streetId = GetSelect2Data("ddlStreet").id;
+    //var objectNameSearch = $("#objectNameSearch").val().trim();
+    var cityName = $("#ddlCity").val();
     searchType = searchType.toUpperCase();
     if (searchType === "") {
         alert("Có lỗi xảy ra, vui lòng tải lại trang");
         return false;
     }
     else if (searchType === MAP_SEARCH_TYPE_OBJECT) {
-        if (objectNameSearch === "") {
-            alert("Vui lòng nhập tên đối tượng để tìm kiếm");
+        if (cityName === "") {
+            alert("Vui lòng nhập chọn thành phố để tìm kiếm");
             return false;
         }
     } else if (searchType === MAP_SEARCH_TYPE_ADDIV) {
-        if ((!districtId || districtId <= 0) && (!wardId || wardId <= 0) && (!streetId || streetId <= 0)) {
-            alert("Vui lòng nhập chọn ít nhất 1 đơn vị hành chính để tìm kiếm");
-            return false;
-        }
+        //if ((!districtId || districtId <= 0) && (!wardId || wardId <= 0) && (!streetId || streetId <= 0)) {
+        //    alert("Vui lòng nhập chọn ít nhất 1 đơn vị hành chính để tìm kiếm");
+        //    return false;
+        //}
     }
    
-    var objectTypeIds = "";
-    $("#divObjectTypes a.t-map-object-type-item-selected").each(function (index) {
-        objectTypeIds += $(this).attr("data-val") + ",";
-    });
-    searchData = [];
+    //var objectTypeIds = "";
+    //$("#divObjectTypes a.t-map-object-type-item-selected").each(function (index) {
+    //    objectTypeIds += $(this).attr("data-val") + ",";
+    //});
+    //searchData = [];
 
-    var cretia = { DistrictId: districtId, WardId: wardId, StreetId: streetId, ObjectName: objectNameSearch, ObjectTypeIds: objectTypeIds };
+    //var cretia = { DistrictId: districtId, WardId: wardId, StreetId: streetId, ObjectName: objectNameSearch, ObjectTypeIds: objectTypeIds };
+    var cretia = { cityName:cityName };
     var parameter = { PageIndex: 1, PageSize: DoTMaxPageSize, Cretia: cretia };
 
-    $.ajax({
-        //url: '@Url.Action("SearchMap", "Map")',
-        url: "/Department/Map/SearchMap",
-        type: "POST",
-        data: parameter,
-        success: function (data) {
-            if (!data.IsError) {
-                searchData = data.Data;
-                BindSearchDataToMap(searchData);
-                getSearchResult(searchData, 1);
-            }
-        },
-        error: function () {
-        }
-    });
+    //$.ajax({
+    //    //url: '@Url.Action("SearchMap", "Map")',
+    //    url: "/Home/SearchTrainStation",
+    //    type: "POST",
+    //    data: parameter,
+    //    success: function (data) {
+    //        if (!data.IsError) {
+    //            searchData = data.Data;
+    //            BindSearchDataToMap(searchData);
+    //            getSearchResult(searchData, 1);
+    //        }
+    //    },
+    //    error: function () {
+    //    }
+    //});
     //var filteredGeoraphyByObjectType = FilterDataByObjectType(geographyData,mapCategories);
     //for (var k = 0; k < filteredGeoraphyByObjectType.length; k++) {
 
@@ -743,6 +758,7 @@ function SearchMapByObjectOrAdDiv(searchType) {
     //console.log('total: ' + searchData.length);
 
 };
+
 function SearchMapByProduct() {
     RemoveMapItemsByType(MAP_TYPE_DEFAULT_SEARCH);
 
@@ -785,6 +801,7 @@ function SearchMapByProduct() {
         }
     });
 };
+
 function SearchMapByDirection() {
     var sLatFrom = parseFloat(document.getElementById("btnSearchMap").getAttribute("data-search-from-lat"));
     var sLngFrom = parseFloat(document.getElementById("btnSearchMap").getAttribute("data-search-from-lng"));
@@ -841,6 +858,7 @@ function SearchMapByDirection() {
     }
            );
 }
+
 function BindSearchDataToMap(searchData) {
     // debugger;
     if (searchData) {
@@ -882,6 +900,7 @@ function BindSearchDataToMap(searchData) {
         $("#spanSearchResultCount").html("0");
     }
 };
+
 function OnObjectNameResultSearch() {
     var input = $("#objectNameResultSearch").val().trim();
     if (searchData.length <= 0) return false;
@@ -894,6 +913,7 @@ function OnObjectNameResultSearch() {
     }
     getSearchResult(result, 1);
 };
+
 function ToggleSearchPanel() {
     var style = $("#pnlSearch").attr("style");
     if (!style) {
@@ -959,6 +979,7 @@ $(function () {
             alert("Có lỗi xảy ra, vui lòng tải lại trang để thử lại.");
         }
         if (type === MAP_SEARCH_TYPE_OBJECT || type === MAP_SEARCH_TYPE_ADDIV) {
+            searchTrainStation(1);
             SearchMapByObjectOrAdDiv(type);
             return false;
         } else if (type === MAP_SEARCH_TYPE_DIRECTION) {
@@ -1059,210 +1080,5 @@ function RemoveSearchResult() {
     $("#divSearchResultContainer").html("");
     //showOrHideElement("divSearchResultWrapper", "none");
 }
-//function FilterDataByObjectType(data, objectTypes) {
-//    var selectedMapCategory = $("#ddlLayerType").val();
-//    var result = [];
-//    var mapCategory = [];
-//    if (selectedMapCategory != null)
-//        for (var i = 0; i < selectedMapCategory.length; i++) {
-//            mapCategory.push(parseInt(selectedMapCategory[i]));
-//        }
-//    else {
-//        for (var j = 0; j < objectTypes.length; j++) {
-//            mapCategory.push(parseInt(objectTypes[j].id));
-//        }
-//    }
-//    if (mapCategory.length >= 0) {
-//        for (var k = 0; k < data.length; k++) {
-//            if ($.inArray(data[k].OTId, mapCategory) >= 0) {
-//                result.push(data[k]);
-//            }
-//        }
-//    } else {
-//        result = data;
-//    }
-
-//    return result;
-//}
-
-//function TestDecodePolyline() {
-//    var geos = DecodeGoogleMapPolyline('cmm_Cwk`eS|@@s@@x@@x@@l@@l@@|@@`AzB}ArBaBnBaBz@@y@@^i@@pAgBfBgCb@@d@@}AlB}BdCh@@n@@HH`@@Yf@@i@@zBeCd@@m@@r@@w@@lCwCNSXQzAiA`IyGtAqAhAeABIt@@q@@|@@o@@`Ag@@bEoBtC_AVEjFkBzE{Bf@@IvAc@@HM`EuAvCiAvAg@@JIxC}@@~GmC~A}@@jCU`@@@@ZJh@@`Ef@@fDJf@@A@@AFBPDDB@@@@?eBnJ}@@zEk@@jD}@@rDk@@~B}@@zEWfB}Be@@UDqA^');
-//    var polygonData = "";
-//    for (var i = 0; i < geos.length; i++) {
-//        polygonData +=  geos[i].longitude + " " + geos[i].latitude + ",";
-//        var markerx = new google.maps.Marker({
-//            position: {lat: geos[i].latitude, lng: geos[i].longitude},
-//            animation: google.maps.Animation.BOUNCE
-//        });
-
-//        // To add the marker to the map, call setMap();
-//        markerx.setMap(map);
-//    }
-//    var searchInput = "LINESTRING("+ polygonData +")";
-//    // console.log(searchInput);
-//};
-//function TestRadius() {
-//    var randomGeoPoints = GenerateRandomPoints({'lat':21.04546, 'lng':105.8478}, 100, 100);
-//    var centerMarkerx = new google.maps.Marker({
-//        position: {lat: 21.04546, lng: 105.8478},
-//        animation: google.maps.Animation.BOUNCE,
-
-//    });
-//    centerMarkerx.setMap(map);
-//    for (var i = 0; i < randomGeoPoints.length; i++) {
-//        var markerx = new google.maps.Marker({
-//            position: {lat: randomGeoPoints[i].latitude, lng: randomGeoPoints[i].longitude}
-//        });
-
-//        // To add the marker to the map, call setMap();
-//        markerx.setMap(map);
-//    }
-//}
-//function TestPolylineToPolygon() {
-//    var geos = DecodeGoogleMapPolyline('cmm_Cwk`eS|@@s@@x@@x@@l@@l@@|@@`AzB}ArBaBnBaBz@@y@@^i@@pAgBfBgCb@@d@@}AlB}BdCh@@n@@HH`@@Yf@@i@@zBeCd@@m@@r@@w@@lCwCNSXQzAiA`IyGtAqAhAeABIt@@q@@|@@o@@`Ag@@bEoBtC_AVEjFkBzE{Bf@@IvAc@@HM`EuAvCiAvAg@@JIxC}@@~GmC~A}@@jCU`@@@@ZJh@@`Ef@@fDJf@@A@@AFBPDDB@@@@?eBnJ}@@zEk@@jD}@@rDk@@~B}@@zEWfB}Be@@UDqA^');
-//    var overviewPathGeo = [];
-//    //var overviewPath = 'cmm_Cwk`eS|@@s@@x@@x@@l@@l@@|@@`AzB}ArBaBnBaBz@@y@@^i@@pAgBfBgCb@@d@@}AlB}BdCh@@n@@HH`@@Yf@@i@@zBeCd@@m@@r@@w@@lCwCNSXQzAiA`IyGtAqAhAeABIt@@q@@|@@o@@`Ag@@bEoBtC_AVEjFkBzE{Bf@@IvAc@@HM`EuAvCiAvAg@@JIxC}@@~GmC~A}@@jCU`@@@@ZJh@@`Ef@@fDJf@@A@@AFBPDDB@@@@?eBnJ}@@zEk@@jD}@@rDk@@~B}@@zEWfB}Be@@UDqA^',overviewPathGeo = [];
-//    for (var i = 0; i < geos.length; i++) {
-//        overviewPathGeo.push(
-//           //[overviewPath[i].lng(), overviewPath[i].lat()]
-//           [geos[i].longitude, geos[i].latitude]
-//        );
-//    }
-//    var distance = 10 / 11112, // Roughly 10km // 1km
-
-//    geoInput = {
-//        type: "LineString",
-//        coordinates: overviewPathGeo
-//    };
-//    var geoReader = new jsts.io.GeoJSONReader(),
-//        geoWriter = new jsts.io.GeoJSONWriter();
-//    var geometry = geoReader.read(geoInput).buffer(distance);
-//    var polygon = geoWriter.write(geometry);
-
-//    var oLanLng = [];
-//    var oCoordinates = polygon.coordinates[0];
-//    for (i = 0; i < oCoordinates.length; i+=3) {
-
-//        var oItem = oCoordinates[i];
-//        oLanLng.push(new google.maps.LatLng(oItem[1], oItem[0]));
-//    }
-//    var polygonData = "";
-//    for (var i = 0; i < oLanLng.length; i++) {
-//        polygonData +=  oLanLng[i].lng() + " " + oLanLng[i].lat() + ",";
-//        var markerx = new google.maps.Marker({
-//            position: {lat: oLanLng[i].lat(), lng: oLanLng[i].lng()}
-//        });
-
-//        // To add the marker to the map, call setMap();
-//        markerx.setMap(map);
-//    }
-//    var searchInput = "POLYGON(("+ polygonData +"))";
-//    console.log(searchInput);
-//    var polygone = new google.maps.Polygon({
-//        paths: oLanLng,
-//        map:map
-//    });
-//    polygone.setMap(map);
-//}
-
-//function CalculateDistance(originLatLng,destinationLatLngs) {
-//    for (var i = 0; i < destinationLatLngs.length; i++) {
-//        var distance =  CalculateDistanceBetween2Coordinates(originLatLng.lat(),originLatLng.lng(),destinationLatLngs[i].Lat,destinationLatLngs[i].Lng);
-//        destinationLatLngs[i].Distance = distance;
-//    }
-//    return destinationLatLngs.sort(function(a,b){return a.Distance - b.Distance});
-//}
-//function searchMap(map, parameter, position) {
-//    $.ajax({
-//        url: '@Url.Action("GetMarkers", "Map")',
-//        type: "POST",
-//        data: parameter,
-//        success: function (data) {
-//            if (!data.IsError) {
-//                // Create markers.
-//                markerData = JSON.parse(data.Data);
-//                var i;
-//                for (i = 0; i < markerData.length; i++) {
-//                    for (var j = 0; j < mapCategoryIcons.length; j++) {
-//                        if (markerData[i].type === mapCategoryIcons[j].mapCategory) {
-//                            var marker = new MarkerWithLabel({
-//                                position: new google.maps.LatLng(markerData[i].position.latitude, markerData[i].position.longitude),
-//                                icon: mapCategoryIcons[j].icon,
-//                                map: map,
-//                                animation: google.maps.Animation.DROP,
-//                                labelId: markerData[i].type + markerData[i].pointId,
-//                                labelContent: markerData[i].markerLabel.labelContent,
-//                                labelAnchor: new google.maps.Point(markerData[i].markerLabel.point.x, markerData[i].markerLabel.point.y),
-//                                labelClass: markerData[i].markerLabel.labelClass, // your desired CSS class
-//                                labelInBackground: markerData[i].markerLabel.labelInBackground
-//                            });
-//                            SetMarkersContent(bounds, map, marker, markerData, i, infowindow);
-//                            markers.push(marker);
-//                            break;
-//                        }
-//                    }
-//                }
-//                SetCenterLocation(map, markerData, position);
-//                getSearchResult(markerData);
-//            }
-//        },
-//        error: function () {
-//            InitGoogleMap();
-//        }
-//    });
-//};
-
-//function setAutocomplete() {
-//    var input = document.getElementById("searchTextField");
-//    var autocomplete = new google.maps.places.Autocomplete(input);
-//    autocomplete.bindTo("bounds", map);
-//    google.maps.event.addListener(autocomplete, "place_changed", function () {
-//        if (autocomplete.getPlace().formatted_address !== undefined) {
-//            RemoveMarkers();
-//            var searchData = autocomplete.getPlace();
-//            var position = { Latitude: searchData.geometry.location.lat(), Longitude: searchData.geometry.location.lng() };
-//            var mapCategory = [];
-//            var selectedMapCategory = $("#ddlLayerType").val();
-//            if (selectedMapCategory != null)
-//                for (var i = 0; i < selectedMapCategory.length; i++) {
-//                    var item = { CategoryCode: selectedMapCategory[i] };
-//                    mapCategory.push(item);
-//                }
-//            else {
-//                for (var i = 0; i < mapCategories.length; i++) {
-//                    var item = { CategoryCode: mapCategories[i].id };
-//                    mapCategory.push(item);
-//                }
-//            }
-//            var parameter = { Position: position, MapCategories: mapCategory };
-//            searchMap(map, parameter, position);
-//        } else {
-//            geocoder.geocode({ "address": autocomplete.getPlace().name }, function (results, status) {
-//                if (status === google.maps.GeocoderStatus.OK) {
-//                    var position = {
-//                        Latitude: results[0].geometry.location.lat(), Longitude: results[0].geometry.location.lng()
-//                    };
-//                    var mapCategory = [];
-//                    var selectedMapCategory = $("#ddlLayerType").val();
-//                    if (selectedMapCategory != null)
-//                        for (var i = 0; i < selectedMapCategory.length; i++) {
-//                            var item = { CategoryCode: selectedMapCategory[i] };
-//                            mapCategory.push(item);
-//                        }
-//                    else {
-//                        for (var i = 0; i < mapCategories.length; i++) {
-//                            var item = { CategoryCode: mapCategories[i].id };
-//                            mapCategory.push(item);
-//                        }
-//                    }
-//                    var parameter = { Position: position, MapCategories: mapCategory };
-//                    searchMap(map, parameter, position);
-//                } else {
-//                    alert("@Html.Raw(CommonConstants.GoogleMapCannotGetData)");
-//                }
-//            });
-//        }
-//    });
-//}
 
 

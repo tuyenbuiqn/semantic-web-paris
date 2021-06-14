@@ -100,7 +100,7 @@ namespace Business
                     CityLabel = cityName,
                     StationLabel = item["stationLabel"].ToString(),
                     Comment = item["stationComment"].ToString(),
-                    InstanceOf = item["Q484170"].ToString(),
+                    //InstanceOf = item["Q484170"].ToString(),
                     Coordination = item["stationCoordination"].ToString()
                 };
                 result.Add(railwayStation);

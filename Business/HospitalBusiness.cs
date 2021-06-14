@@ -57,7 +57,7 @@ namespace Business
                     MedicalSpecialty = item["medicalSpecialty"].ToString(),
                     Address = item["hospitalAddress"].ToString(),
                     Telephone = item["telephone"].ToString(),
-                    Coordination = item["Coordination"].ToString()
+                    Coordination = item["coordinate"].ToString()
                 };
                 result.Add(hospital);
             }

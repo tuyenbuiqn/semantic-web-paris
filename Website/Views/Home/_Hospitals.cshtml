@@ -1,5 +1,5 @@
 ﻿@using PagedList.Mvc
-@model PagedList.IPagedList<Model.Entity.BikeStation>
+@model PagedList.IPagedList<Model.Entity.Hospital>
 @{
     var cityName = ViewBag.SearchCityName;
 }
@@ -17,7 +17,7 @@
             @foreach (var item in Model)
             {
                 <tr>
-                    <td>@item.Uri</td>
+                    <td>@item.CityUri</td>
                     <td>
                         @item.Label
                     </td>
@@ -29,10 +29,10 @@
         </tbody>
     </table>
 </div>
-<div id="BikeStationPaper" style="display: inline-block; vertical-align: middle;" class="text-right">
+<div id="HospitalPaper" style="display: inline-block; vertical-align: middle;" class="text-right">
     @Html.PagedListPager(
         Model,
-        page => Url.Action("SearchBikeStatation", new { page, cityName }),
+        page => Url.Action("SearchHospital", new { page, cityName }),
         new PagedListRenderOptions()
         {
             MaximumPageNumbersToDisplay = 30,
@@ -43,7 +43,7 @@
 </div>
 <script>
     $(function () {
-        $("#BikeStationPaper a").click(function () {
+        $("#HospitalPaper a").click(function () {
             if (this.href.length > 0) {
                 $.ajax({
                     type: "POST",
@@ -51,7 +51,7 @@
                     beforeSend: function () {
                     }
                 }).done(function (data) {
-                    $("#nav-bike").html(data);
+                    $("#nav-hospital").html(data);
                 }).fail(function (jqXHR, textStatus) {
                 });
             };

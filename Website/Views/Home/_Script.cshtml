@@ -1,0 +1,67 @@
+﻿<script>
+    $(function () {
+        $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+            var tab = e.target.innerHTML; // newly activated tab
+            if (tab === "Hospital") {
+                searchHospital(1);
+            }
+            else if (tab === "Train station") {
+                searchTrainStation(1);
+            }
+            else if (tab === "Bike station") {
+                searchBikeStation(1);
+            }
+        });
+    });
+    function searchTrainStation(pageId) {
+        var cityName = $("#ddlCity").val();
+        if (cityName === "") return false;
+        $("#nav-train").html("");
+
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("SearchTrainStation","Home")',
+            data: { cityName: cityName, page:pageId},
+            beforeSend: function () {
+            }
+        }).done(function (data) {
+            $("#nav-train").html(data);
+        }).fail(function (jqXHR, textStatus) {
+        });
+    };
+
+    function searchBikeStation(pageId) {
+        var cityName = $("#ddlCity").val();
+        if (cityName === "") return false;
+        $("#nav-bike").html("");
+
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("SearchBikeStatation","Home")',
+            data: { cityName: cityName, page:pageId},
+            beforeSend: function () {
+            }
+        }).done(function (data) {
+            $("#nav-bike").html(data);
+        }).fail(function (jqXHR, textStatus) {
+        });
+    };
+
+
+    function searchHospital(pageId) {
+        var cityName = $("#ddlCity").val();
+        if (cityName === "") return false;
+        $("#nav-hospital").html("");
+
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("SearchHospital","Home")',
+            data: { cityName: cityName, page:pageId},
+            beforeSend: function () {
+            }
+        }).done(function (data) {
+            $("#nav-hospital").html(data);
+        }).fail(function (jqXHR, textStatus) {
+        });
+    };
+</script>

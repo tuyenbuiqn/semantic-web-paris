@@ -61,10 +61,10 @@
 
             <div id="pnlSearch" class="t-map-result-search-container">
                 @*<div id="pnlSearchByObject" class="t-map-search-panel-object-container t-map-search-panel">
-                    <input type="text" id="objectNameSearch" class="form-control" placeholder="Nhập vào tên đối tượng cần tìm kiếm" />
-                </div>
-                <div class="t-map-search-button-container t-map-search-panel">
-                </div>*@
+                        <input type="text" id="objectNameSearch" class="form-control" placeholder="Nhập vào tên đối tượng cần tìm kiếm" />
+                    </div>
+                    <div class="t-map-search-button-container t-map-search-panel">
+                    </div>*@
                 <div id="pnlSearchByObject" class="t-map-search-panel-object-container t-map-search-panel row">
                     <div class="t-col-sm-9">
                         @Html.DropDownListFor(o => o.SelectedCity, new SelectList(Model.Cities, "Label", "Label"), "Chọn Thành phố", new { @class = "ddlSelect2 t-border-radius-0", @id = "ddlCity", @style = "width:100%;" })
@@ -163,6 +163,8 @@
         </div>
     </div>
 </div>
+@Html.Partial("_Script")
+
 <link href="~/Content/Responsive-Photo-Viewer/docs/css/photoviewer.css" rel="stylesheet" />
 <script src="~/Content/Responsive-Photo-Viewer/dist/photoviewer.js"></script>
 <script src="~/Scripts/jsts.min.js"></script>

@@ -10,19 +10,28 @@ namespace Website.Controllers
     public class HomeController : Controller
     {
         private ICityBusiness _cityBusiness;
+        private IHospitalBusiness _hospitalBusiness;
         private IBikeStationBusiness _bikeStationBusiness;
+        private IRailwayStationBusiness _railwayStationBusiness;
         public HomeController(
             ICityBusiness cityBusiness
             , IBikeStationBusiness bikeStationBusiness
+            , IHospitalBusiness hospitalBusiness
+            , IRailwayStationBusiness railwayStationBusiness
             )
         {
             _cityBusiness = cityBusiness;
             _bikeStationBusiness = bikeStationBusiness;
+            _hospitalBusiness = hospitalBusiness;
+            _railwayStationBusiness = railwayStationBusiness;
         }
         public ActionResult Index()
         {
             ViewBag.SearchCityName = "LYON";
-            var data = new Map();
+            var data = new Map()
+            {
+                Cities = _cityBusiness.GetAll()
+            };
             return View(data);
         }
 
@@ -33,20 +42,19 @@ namespace Website.Controllers
             var pagedData = data.ToPagedList(page,30);
             return PartialView("_BikeStations",pagedData);
         }
-        public ActionResult About()
+        public ActionResult SearchHospital(string cityName, int page)
         {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
+            ViewBag.SearchCityName = cityName;
+            var data = _hospitalBusiness.GetByCity(cityName);
+            var pagedData = data.ToPagedList(page,30);
+            return PartialView("_Hospitals",pagedData);
         }
-
-        public ActionResult Contact()
+        public ActionResult SearchTrainStation(string cityName, int page)
         {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
+            ViewBag.SearchCityName = cityName;
+            var data = _railwayStationBusiness.GetByCity(cityName);
+            var pagedData = data.ToPagedList(page,30);
+            return PartialView("_Trains",pagedData);
         }
-
-      
     }
 }
