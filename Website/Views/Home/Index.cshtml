@@ -1,0 +1,176 @@
+﻿@model Model.Model.Map
+@{
+    Layout = "~/Views/Shared/_MapLayout.cshtml";
+    ViewBag.Title = "Tra cứu thông tin trên bản đồ";
+}
+<div id="divHideAll" class="t-map-hide-all" style="display: none;"></div>
+<div class="t-map-homepage">
+    <a href="@Html.Raw(Url.Action("Index", "Home"))" title="Home" target="_blank">
+        <i class="fa fa-2x fa-home"></i>
+    </a>
+</div>
+<div class="t-map-drawer-tool-label">
+    <span>Vẽ vùng tìm kiếm</span>
+</div>
+<div class="col-sm-12 t-padding-left-0 t-padding-right-0">
+    <a class="t-map-result-toggle t-map-result-toggle-expand" id="toggleResult" title="Ẩn kết quả"></a>
+    <div id="divSearchMenu" class="t-map-search-menu-container" style="display: none;">
+        <div class="t-map-search-menu-title">
+            <h5>Loại tìm kiếm</h5>
+            <a href="javascript:void(0);" title="Ẩn menu loại tìm kiếm" id="hideSearchMenu">
+                <i class="fa fa-angle-double-left fa-lg"></i>
+            </a>
+        </div>
+        <ul class="t-map-search-menu">
+            <li>
+                <a href="javascript:void(0);" onclick="ShowSearchMenu('Object')">
+                    <i class="fa fa-address-book fa-lg"></i>
+                    Tìm kiếm theo đối tượng
+                </a>
+            </li>
+            <li>
+                <a href="javascript:void(0);" onclick="ShowSearchMenu('AdDiv')">
+                    <i class="fa fa-globe fa-lg"></i>
+                    Tìm kiếm theo đơn vị hành chính
+                </a>
+            </li>
+            <li>
+                <a href="javascript:void(0);" onclick="ShowSearchMenu('Direction')">
+                    <i class="fa fa-map fa-lg"></i>
+                    Tìm kiếm theo vị trí
+                </a>
+            </li>
+            <li>
+                <a href="javascript:void(0);" onclick="ShowSearchMenu('Product')">
+                    <i class="fa fa-product-hunt fa-lg"></i>
+                    Tìm kiếm theo sản phẩm
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="t-map-search-container">
+        <div id="map_canvas_e" style="width: 100%; height: 1024px; margin: 0"></div>
+        <div id="crosshair"></div>
+        <div class="t-map-result" id="divSearchResult">
+            <div class="t-map-title-container t-map-search-panel">
+                <a href="javascript:void(0);" title="Hiện menu loại tìm kiếm" id="showSearchMenu">
+                    <i class="fa fa-bars fa-lg"></i>
+                </a>
+                <h3 id="h3SearchTitle" onclick="ToggleSearchPanel();">Đóng khung tìm kiếm</h3>
+            </div>
+
+            <div id="pnlSearch" class="t-map-result-search-container">
+                @*<div id="pnlSearchByObject" class="t-map-search-panel-object-container t-map-search-panel">
+                    <input type="text" id="objectNameSearch" class="form-control" placeholder="Nhập vào tên đối tượng cần tìm kiếm" />
+                </div>
+                <div class="t-map-search-button-container t-map-search-panel">
+                </div>*@
+                <div id="pnlSearchByObject" class="t-map-search-panel-object-container t-map-search-panel row">
+                    <div class="t-col-sm-9">
+                        @Html.DropDownListFor(o => o.SelectedCity, new SelectList(Model.Cities, "Label", "Label"), "Chọn Thành phố", new { @class = "ddlSelect2 t-border-radius-0", @id = "ddlCity", @style = "width:100%;" })
+                    </div>
+                    <div class="t-col-sm-3">
+                        <button style="height: 35px;" type="button" id="btnSearchMap" class="btn btn-primary btn-block" data-search-type="OBJECT"> Tìm kiếm</button>
+                    </div>
+                </div>
+                <div id="pnlSearchByAdDiv" class="t-map-search-panel-AdDiv-container t-map-search-panel" style="display: none;">
+                    <div class="col-sm-12 t-padding-left-0 t-padding-right-0">
+                        <div id="divDistrict">
+                            @*@Html.DropDownListFor(o => o.DefaultSelectedDistrictId, new SelectList(Model.Districts, "AdministrativeDivisionId", "Name"), "Chọn Quận/huyện", new { @class = "ddlSelect2 t-border-radius-0", @id = "ddlDistrict", @style = "width:100%;", @onChange = "DistrictChange();" })*@
+                        </div>
+                    </div>
+                    <div class="col-sm-12 t-margin-top-10 t-padding-left-0 t-padding-right-0">
+                        <div class="col-sm-6 t-padding-left-0">
+                            <div id="divWard">
+                                @*@Html.DropDownListFor(o => o.DefaultSelectedWardId, new SelectList(Model.Wards, "AdministrativeDivisionId", "Name"), "Chọn Phường/xã", new { @class = "ddlSelect2 t-border-radius-0", @id = "ddlWard", @style = "width:100%;" })*@
+                            </div>
+                        </div>
+                        <div class="col-sm-6 t-padding-right-0 t-padding-left-0">
+                            <div id="divStreet">
+                                @*@Html.DropDownListFor(o => o.DefaultSelectedStreetId, new SelectList(Model.Streets, "StreetId", "StreetName"), "Chọn Đường/phố", new { @class = "ddlSelect2 t-border-radius-0", @id = "ddlStreet", @style = "width:100%;" })*@
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="pnlSearchByDirection" class="t-map-search-panel-object-container t-map-search-panel" style="display: none;">
+                    <input type="text" id="searchFrom" class="form-control" placeholder="Tìm kiếm từ đây" />
+                    <input type="text" id="searchTo" class="form-control t-margin-top-5" placeholder="Tìm kiếm đến đây" />
+                </div>
+
+                <div id="pnlSearchByProduct" class="t-map-search-panel-object-container t-map-search-panel" style="display: none;">
+                    <div class="col-sm-12 t-padding-left-0 t-padding-right-0">
+                        @*@Html.DropDownListFor(o => o.DefaultSelectedProductCategoryId, new SelectList(Model.ProductCategories, "CategoryId", "CategoryName"), new { @class = "selectpicker t-border-radius-0", @multiple= "multiple", @id = "ddlProductCategory", @style = "width:100%;" })*@
+                    </div>
+                    <div class="col-sm-12 t-padding-left-0 t-padding-right-0">
+                        <input type="text" id="productSearch" class="form-control t-margin-top-5" placeholder="Nhập tên sản phẩm cần tìm" />
+                    </div>
+                </div>
+
+                <div class="t-map-object-type-wrapper t-map-search-panel" id="divObjectTypeContainer">
+                    <div style="display: none;">
+                        <select name="ddlLayerType" style="width: 100%; height: 34px !important; display: none;" id="ddlLayerType" class="select2-multiple2" multiple></select>
+                    </div>
+                    <div id="divObjectTypes" class="t-map-object-type-container t-margin-right--5"></div>
+                    @*@Html.Partial("_ObjectTypes")*@
+                </div>
+
+
+            </div>
+            <div id="divSearchResultWrapper" class="t-map-search-result-container">
+                <h5>Kết quả tìm kiếm: <span id="spanSearchResultCount"></span></h5>
+                @*<div id="divObjectNameResultSearch" class="t-search-result-inbox">
+                        <input type="text" id="objectNameResultSearch" onKeyUp="return OnObjectNameResultSearch(); " placeholder="Tìm kiếm nhanh" value="" />
+                    </div>*@
+                <div id="divSearchResultContainer"></div>
+                <div class="t-map-result-container">
+
+                    <nav>
+                        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                            <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-train" role="tab" aria-controls="nav-home" aria-selected="true">Train station</a>
+                            <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-hospital" role="tab" aria-controls="nav-profile" aria-selected="false">Hospital</a>
+                            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-bike" role="tab" aria-controls="nav-contact" aria-selected="false">Bike station</a>
+                        </div>
+                    </nav>
+                    <div class="tab-content" id="nav-tabContent">
+                        <div class="tab-pane fade show active" id="nav-train" role="tabpanel" aria-labelledby="nav-home-tab">...</div>
+                        <div class="tab-pane fade" id="nav-hospital" role="tabpanel" aria-labelledby="nav-profile-tab">...</div>
+                        <div class="tab-pane fade" id="nav-bike" role="tabpanel" aria-labelledby="nav-contact-tab">...</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="divMarkerContent" style="display: none;">
+</div>
+@Html.Partial("_MarkerContent")
+@Html.Partial("_SearchResult")
+@Html.Partial("_RightClickContent")
+
+<div id="MultiMediaMapObjectModel" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg" style="width: 1000px">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title" id="MultiMediaMapObjectTitleModel"></h4>
+            </div>
+            <div class="modal-body t-margin-top-10" id="MultiMediaMapObjectBodyModel">
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+<link href="~/Content/Responsive-Photo-Viewer/docs/css/photoviewer.css" rel="stylesheet" />
+<script src="~/Content/Responsive-Photo-Viewer/dist/photoviewer.js"></script>
+<script src="~/Scripts/jsts.min.js"></script>
+<script src="~/Scripts/dot/GoogleMapSearch.js"></script>
+
+<style>
+    .bootstrap-select:not([class*=col-]):not([class*=form-control]):not(.input-group-btn) {
+        width: 100%;
+    }
+</style>
+

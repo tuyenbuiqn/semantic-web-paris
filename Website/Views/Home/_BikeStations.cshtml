@@ -1,0 +1,67 @@
+﻿@using PagedList.Mvc
+@model PagedList.IPagedList<Model.Entity.BikeStation>
+@{
+    var cityName = ViewBag.SearchCityName;
+}
+<div class="clearfix"></div>
+<div class="table-responsive">
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Uri</th>
+                <th>Label</th>
+                <th>Coordination</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Uri</td>
+                    <td>
+                        @item.Label
+                    </td>
+                    <td>
+                        @item.Coordination
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+@*Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+    @Html.PagedListPager(Model, page => Url.Action("SearchBikeStatation", new { page, cityName }))*@
+
+<div id="BikeStationPaper" style="display: inline-block; vertical-align: middle;" class="text-right">
+
+
+    @Html.PagedListPager(
+        Model,
+        page => Url.Action("SearchBikeStatation", new { page, cityName }),
+        new PagedListRenderOptions()
+        {
+            MaximumPageNumbersToDisplay = 30,
+            DisplayEllipsesWhenNotShowingAllPageNumbers = false,
+            Display = PagedListDisplayMode.IfNeeded
+        }
+        )
+</div>
+<script>
+    $(function () {
+        $("#BikeStationPaper a").click(function () {
+            if (this.href.length > 0) {
+                $.ajax({
+                    type: "POST",
+                    url: this.href,
+                    beforeSend: function () {
+                    }
+                }).done(function (data) {
+                    $("#divBikeStatation").html(data);
+                }).fail(function (jqXHR, textStatus) {
+                });
+            };
+            return false;
+        });
+    });
+</script>

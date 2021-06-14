@@ -1,0 +1,61 @@
+﻿<script id="tmplMarkerSearchResult" type="text/x-jquery-tmpl">
+    <div class="t-marker-result-container col-sm-12" id="map-item${RowNumber}">
+        <h4 title="${OTName}" class="t-marker-result-title" onclick=" SetCenterByLatLng('${OTId}_${OId}', ${Lat},${Lng}); ">
+            <img src="/Content/images/markers/marker_${OTId}.png" alt="${OTName}"/>${Name}
+            {{if OTId == 1}}
+            {{if Detail.Props != null}}
+            {{if Detail.Props[0] != null}}
+            <span>
+                (${Detail.Props[0].Rating})
+            </span>
+            {{/if}}
+            {{/if}}
+            {{/if}}
+            @*{{if Distance > 0}}*@
+            <span class="t-marker-result-distance" id="spanDistance${RowNumber}">@*${Distance} m*@</span>
+            @*{{/if}}*@
+        </h4>
+        <div class="t-marker-result-content col-sm-9 t-padding-left-0">
+            <div class="t-marker-result-content-row">
+                <i class="fa fa-map-marker fa-lg"></i> ${Addr}
+            </div>
+            <div class="t-marker-result-content-row">
+                <i class="fa fa-phone fa-lg"></i> ${Detail.Phone}
+            </div>
+            <div class="t-marker-result-content-row">
+                <i class="fa fa-internet-explorer fa-lg"></i>
+                <a href="javascript:void(0);" onclick=" OpenNewLink('${Detail.Web}') " target="_blank">${Detail.Web}</a>
+            </div>
+            @*<div class="t-marker-result-content-row">
+                <i class="t-fa-my-hanoi"></i>
+                <a href="javascript:void(0);" onclick=" OpenNewLink('${MyHaNoiLink}') " target="_blank">${MyHaNoiLink}</a>
+            </div>*@
+            {{if Detail.Links != null}}
+            {{each Detail.Links}}
+            <div class="t-marker-result-content-row">
+                <i class="fa fa-link fa-lg"></i>
+                <a href="javascript:void(0);" onclick=" OpenNewLink('${$value.Link}') " target="_blank">${$value.Link}</a>
+            </div>
+            {{/each}}
+            {{/if}}
+            @*<div class="t-marker-result-content-row">
+                    <i class="fa fa-address-card fa-lg"></i> ${Detail.Mail}
+                </div>
+                <div class="t-marker-result-content-row">
+                    <i class="fa fa-medium fa-lg"></i>
+                    {{if MultiMedia.Video == true}} <a title="View Video" href="javascript:void(0);" onclick="MapMultiMedia(${OTId},${OId},false,'@SelectTypeEnum.Mapped.ToDescription()',@((int)MediaTypeEnum.Video))">Video</a> {{/if}}
+                    {{if MultiMedia.Image == true}} <a title="View Image" href="javascript:void(0);" onclick="MapMultiMedia(${OTId},${OId},false,'@SelectTypeEnum.Mapped.ToDescription()',@((int)MediaTypeEnum.Image))">Image</a> {{/if}}
+                    {{if MultiMedia.Audio == true}} <a title="View Audio" href="javascript:void(0);" onclick="MapMultiMedia(${OTId},${OId},false,'@SelectTypeEnum.Mapped.ToDescription()',@((int)MediaTypeEnum.Audio))">Audio</a> {{/if}}
+                    {{if MultiMedia.Other == true}} <a title="View Other Media" href="javascript:void(0);" onclick="MapMultiMedia(${OTId},${OId},false,'@SelectTypeEnum.Mapped.ToDescription()',@((int)MediaTypeEnum.Other))">Other</a> {{/if}}
+                </div>
+                <div class="t-marker-result-content-row">
+                    <i class="fa fa-gear fa-lg"></i> ${OTName}
+                </div>*@
+        </div>
+        <div class="col-sm-3 t-marker-result-image-container t-padding-left-0 t-padding-right-0">
+            <img src="${ImgUrl}" title="${title}" alt="${title}" />
+        </div>
+    </div>
+</script>
+
+

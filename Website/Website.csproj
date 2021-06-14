@@ -1,0 +1,913 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{24F07241-F6C5-4BF5-8B17-6AB90B7D5AB2}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Website</RootNamespace>
+    <AssemblyName>Website</AssemblyName>
+    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TypeScriptToolsVersion>4.1</TypeScriptToolsVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="dotNetRDF, Version=2.7.0.0, Culture=neutral, PublicKeyToken=6055ffe4c97cc780, processorArchitecture=MSIL">
+      <HintPath>..\packages\dotNetRDF.2.7.0\lib\net40\dotNetRDF.dll</HintPath>
+    </Reference>
+    <Reference Include="HtmlAgilityPack, Version=1.11.31.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
+      <HintPath>..\packages\HtmlAgilityPack.1.11.31\lib\Net45\HtmlAgilityPack.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.2\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security" />
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.2\lib\netstandard2.0\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.7\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.7\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Abstractions, Version=5.11.1.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.Abstractions.5.11.1\lib\net47\Unity.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Container, Version=5.11.1.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.Container.5.11.1\lib\net47\Unity.Container.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Mvc, Version=5.11.1.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.Mvc.5.11.1\lib\net47\Unity.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="VDS.Common, Version=1.10.0.0, Culture=neutral, PublicKeyToken=ab5f4eb908061bf0, processorArchitecture=MSIL">
+      <HintPath>..\packages\VDS.Common.1.10.0\lib\net40-client\VDS.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="WebActivatorEx, Version=2.0.0.0, Culture=neutral, PublicKeyToken=7b26dc2a43f6a0d4, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebActivatorEx.2.2.0\lib\net40\WebActivatorEx.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\UnityConfig.cs" />
+    <Compile Include="App_Start\UnityMvcActivator.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MapController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\AdminLTE.css" />
+    <Content Include="Content\AdminLTE.min.css" />
+    <Content Include="Content\bootstrap-datetimepicker.css" />
+    <Content Include="Content\bootstrap-grid.css" />
+    <Content Include="Content\bootstrap-grid.min.css" />
+    <Content Include="Content\bootstrap-reboot.css" />
+    <Content Include="Content\bootstrap-reboot.min.css" />
+    <Content Include="Content\bootstrap-responsive.css" />
+    <Content Include="Content\bootstrap-select.css" />
+    <Content Include="Content\bootstrap-select.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\font-awesome-4.7.0\css\font-awesome.css" />
+    <Content Include="Content\font-awesome-4.7.0\css\font-awesome.min.css" />
+    <Content Include="Content\font-awesome-4.7.0\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\font-awesome-4.7.0\HELP-US-OUT.txt" />
+    <Content Include="Content\font-awesome.css" />
+    <Content Include="Content\font-awesome.min.css" />
+    <Content Include="Content\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\formValidation\bootstrapValidator.css" />
+    <Content Include="Content\formValidation\bootstrapValidator.min.css" />
+    <Content Include="Content\images\a01.png" />
+    <Content Include="Content\images\background-color.png" />
+    <Content Include="Content\images\BackGround\CTO\bg1.jpg" />
+    <Content Include="Content\images\BackGround\CTO\bg2.jpg" />
+    <Content Include="Content\images\BackGround\CTO\bg3.jpg" />
+    <Content Include="Content\images\BackGround\HNI\bg1.jpg" />
+    <Content Include="Content\images\BackGround\HNI\bg2.jpg" />
+    <Content Include="Content\images\BackGround\HNI\bg3.jpg" />
+    <Content Include="Content\images\banner.jpg" />
+    <Content Include="Content\images\banner_1.jpg" />
+    <Content Include="Content\images\banner_repeat.jpg" />
+    <Content Include="Content\images\border-color.png" />
+    <Content Include="Content\images\Capture.JPG" />
+    <Content Include="Content\images\dialog-error.png" />
+    <Content Include="Content\images\facebook_circle_color.png" />
+    <Content Include="Content\images\google-plus.png" />
+    <Content Include="Content\images\Hanoi_Logo.svg.png" />
+    <Content Include="Content\images\jsoneditor-icons.svg" />
+    <Content Include="Content\images\loading-icons\images.txt" />
+    <Content Include="Content\images\loading-icons\loading1.gif" />
+    <Content Include="Content\images\loading-icons\loading10.gif" />
+    <Content Include="Content\images\loading-icons\loading2.gif" />
+    <Content Include="Content\images\loading-icons\loading3.gif" />
+    <Content Include="Content\images\loading-icons\loading4.gif" />
+    <Content Include="Content\images\loading-icons\loading5.gif" />
+    <Content Include="Content\images\loading-icons\loading6.gif" />
+    <Content Include="Content\images\loading-icons\loading7.gif" />
+    <Content Include="Content\images\loading-icons\loading8.gif" />
+    <Content Include="Content\images\loading-icons\loading9.gif" />
+    <Content Include="Content\images\loading.gif" />
+    <Content Include="Content\images\map-collapse-expand.png" />
+    <Content Include="Content\images\map-direction.png" />
+    <Content Include="Content\images\markers\marker_1.png" />
+    <Content Include="Content\images\markers\marker_11.png" />
+    <Content Include="Content\images\markers\marker_12.png" />
+    <Content Include="Content\images\markers\marker_13.png" />
+    <Content Include="Content\images\markers\marker_14.png" />
+    <Content Include="Content\images\markers\marker_16.png" />
+    <Content Include="Content\images\markers\marker_2.png" />
+    <Content Include="Content\images\markers\marker_3.png" />
+    <Content Include="Content\images\markers\marker_30.png" />
+    <Content Include="Content\images\markers\marker_35.png" />
+    <Content Include="Content\images\markers\marker_42.png" />
+    <Content Include="Content\images\markers\marker_43.png" />
+    <Content Include="Content\images\markers\marker_555.png" />
+    <Content Include="Content\images\markers\marker_556.png" />
+    <Content Include="Content\images\markers\marker_557.png" />
+    <Content Include="Content\images\markers\marker_558.png" />
+    <Content Include="Content\images\markers\marker_559.png" />
+    <Content Include="Content\images\markers\marker_560.png" />
+    <Content Include="Content\images\markers\marker_561.png" />
+    <Content Include="Content\images\myhanoi-16x16.png" />
+    <Content Include="Content\images\no-image-available.png" />
+    <Content Include="Content\images\post3.jpg" />
+    <Content Include="Content\images\success.png" />
+    <Content Include="Content\images\twitter_circle_color.png" />
+    <Content Include="Content\images\Users\user-icon.png" />
+    <Content Include="Content\images\vertical-alignment-bottom.png" />
+    <Content Include="Content\images\vertical-alignment-center.png" />
+    <Content Include="Content\images\vertical-alignment-top.png" />
+    <Content Include="Content\images\vietnamtimeless.jpg" />
+    <Content Include="Content\images\vietnamtimeless.png" />
+    <Content Include="Content\ionicons.css" />
+    <Content Include="Content\ionicons.min.css" />
+    <Content Include="Content\jcarousel.responsive.css" />
+    <Content Include="Content\jsoneditor.css" />
+    <Content Include="Content\Layout.css" />
+    <Content Include="Content\lightbox-lite\dark.css" />
+    <Content Include="Content\lightbox-lite\fonts\lc_lightbox.svg" />
+    <Content Include="Content\lightbox-lite\lc_lightbox.css" />
+    <Content Include="Content\lightbox-lite\lc_lightbox.min.css" />
+    <Content Include="Content\lightbox-lite\light.css" />
+    <Content Include="Content\lightbox-lite\minimal.css" />
+    <Content Include="Content\lightbox-lite\patterns\oblique_dots.png" />
+    <Content Include="Content\lightbox-lite\patterns\pattern-1.png" />
+    <Content Include="Content\lightbox-lite\patterns\pattern-dot-1.png" />
+    <Content Include="Content\lightbox-lite\patterns\pattern-dot-2.png" />
+    <Content Include="Content\lightbox-lite\patterns\pattern-dot-b1.png" />
+    <Content Include="Content\lightbox-lite\patterns\pattern-dot-b2.png" />
+    <Content Include="Content\lightbox-lite\patterns\pattern-dot-b3.png" />
+    <Content Include="Content\lightbox-lite\patterns\pattern-dot-b4.png" />
+    <Content Include="Content\lightbox-lite\patterns\pattern-triangle-05.png" />
+    <Content Include="Content\lightbox-lite\patterns\pattern-triangle-10.png" />
+    <Content Include="Content\lightbox-lite\patterns\pattern-triangle-20.png" />
+    <Content Include="Content\lightbox-lite\patterns\pattern-triangle-30.png" />
+    <Content Include="Content\lightbox-lite\patterns\pattern-triangle-40.png" />
+    <Content Include="Content\lightbox-lite\patterns\pattern-ver-line-10.png" />
+    <Content Include="Content\lightbox-lite\patterns\pattern-ver-line-20.png" />
+    <Content Include="Content\lightbox-lite\patterns\pattern-ver-line-30.png" />
+    <Content Include="Content\lightbox-lite\patterns\pattern-ver-line-40.png" />
+    <Content Include="Content\lightbox-lite\patterns\pattern-ver-line-50.png" />
+    <Content Include="Content\nightBox\close.png" />
+    <Content Include="Content\nightBox\lightbox.css" />
+    <Content Include="Content\nightBox\loading.gif" />
+    <Content Include="Content\nightBox\next.png" />
+    <Content Include="Content\nightBox\prev.png" />
+    <Content Include="Content\nightBox\screen.css" />
+    <Content Include="Content\normalize.css" />
+    <Content Include="Content\PagedList.css" />
+    <Content Include="Content\Responsive-Photo-Viewer\.gitignore" />
+    <Content Include="Content\Responsive-Photo-Viewer\dist\photoviewer.css" />
+    <Content Include="Content\Responsive-Photo-Viewer\dist\photoviewer.js" />
+    <Content Include="Content\Responsive-Photo-Viewer\dist\photoviewer.min.css" />
+    <Content Include="Content\Responsive-Photo-Viewer\dist\photoviewer.min.js" />
+    <Content Include="Content\Responsive-Photo-Viewer\docs\css\docs.css" />
+    <Content Include="Content\Responsive-Photo-Viewer\docs\css\photoviewer.css" />
+    <Content Include="Content\Responsive-Photo-Viewer\docs\css\snack-helper.css" />
+    <Content Include="Content\Responsive-Photo-Viewer\docs\css\snack.css" />
+    <Content Include="Content\Responsive-Photo-Viewer\docs\index.html" />
+    <Content Include="Content\Responsive-Photo-Viewer\docs\js\photoviewer.js" />
+    <Content Include="Content\Responsive-Photo-Viewer\postcss.config.js" />
+    <Content Include="Content\Responsive-Photo-Viewer\rollup.config.js" />
+    <Content Include="Content\Responsive-Photo-Viewer\src\js\constants.js" />
+    <Content Include="Content\Responsive-Photo-Viewer\src\js\core.js" />
+    <Content Include="Content\Responsive-Photo-Viewer\src\js\defaults.js" />
+    <Content Include="Content\Responsive-Photo-Viewer\src\js\draggable.js" />
+    <Content Include="Content\Responsive-Photo-Viewer\src\js\movable.js" />
+    <Content Include="Content\Responsive-Photo-Viewer\src\js\resizable.js" />
+    <Content Include="Content\Responsive-Photo-Viewer\src\js\utilities.js" />
+    <Content Include="Content\select2\select2.css" />
+    <Content Include="Content\skins\skin-black-light.css" />
+    <Content Include="Content\skins\skin-black-light.min.css" />
+    <Content Include="Content\skins\skin-black.css" />
+    <Content Include="Content\skins\skin-black.min.css" />
+    <Content Include="Content\skins\skin-blue-light.css" />
+    <Content Include="Content\skins\skin-blue-light.min.css" />
+    <Content Include="Content\skins\skin-blue.css" />
+    <Content Include="Content\skins\skin-blue.min.css" />
+    <Content Include="Content\skins\skin-green-light.css" />
+    <Content Include="Content\skins\skin-green-light.min.css" />
+    <Content Include="Content\skins\skin-green.css" />
+    <Content Include="Content\skins\skin-green.min.css" />
+    <Content Include="Content\skins\skin-purple-light.css" />
+    <Content Include="Content\skins\skin-purple-light.min.css" />
+    <Content Include="Content\skins\skin-purple.css" />
+    <Content Include="Content\skins\skin-purple.min.css" />
+    <Content Include="Content\skins\skin-red-light.css" />
+    <Content Include="Content\skins\skin-red-light.min.css" />
+    <Content Include="Content\skins\skin-red.css" />
+    <Content Include="Content\skins\skin-red.min.css" />
+    <Content Include="Content\skins\skin-yellow-light.css" />
+    <Content Include="Content\skins\skin-yellow-light.min.css" />
+    <Content Include="Content\skins\skin-yellow.css" />
+    <Content Include="Content\skins\skin-yellow.min.css" />
+    <Content Include="Content\skins\_all-skins.css" />
+    <Content Include="Content\skins\_all-skins.min.css" />
+    <Content Include="Content\Style.css" />
+    <Content Include="Content\theme.css" />
+    <Content Include="Content\typica-login.css" />
+    <Content Include="Content\webcodecam\.gitattributes" />
+    <Content Include="Content\webcodecam\.gitignore" />
+    <Content Include="Content\webcodecam\audio\beep.mp3" />
+    <Content Include="Content\webcodecam\AUTHORS.txt" />
+    <Content Include="Content\webcodecam\barcode.png" />
+    <Content Include="Content\webcodecam\compatibility.jpg" />
+    <Content Include="Content\webcodecam\css\949320192f43b9d8.png" />
+    <Content Include="Content\webcodecam\css\bootstrap.min.css" />
+    <Content Include="Content\webcodecam\css\Chrome_Canary_Icon.png" />
+    <Content Include="Content\webcodecam\css\firefox-dev.png" />
+    <Content Include="Content\webcodecam\css\google-chrome.png" />
+    <Content Include="Content\webcodecam\css\Internet_Explorer_9.png" />
+    <Content Include="Content\webcodecam\css\mozilla_firefox.png" />
+    <Content Include="Content\webcodecam\css\opera.png" />
+    <Content Include="Content\webcodecam\css\safari-icon.png" />
+    <Content Include="Content\webcodecam\css\style.css" />
+    <Content Include="Content\webcodecam\demo.jpg" />
+    <Content Include="Content\webcodecam\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\webcodecam\index.html" />
+    <Content Include="Content\webcodecam\js\DecoderWorker.js" />
+    <Content Include="Content\webcodecam\js\filereader.js" />
+    <Content Include="Content\webcodecam\js\jquery.js" />
+    <Content Include="Content\webcodecam\js\main.js" />
+    <Content Include="Content\webcodecam\js\mainjquery.js" />
+    <Content Include="Content\webcodecam\js\qrcodelib.js" />
+    <Content Include="Content\webcodecam\js\webcodecamjquery.js" />
+    <Content Include="Content\webcodecam\js\webcodecamjs.js" />
+    <Content Include="Content\webcodecam\MIT-License.txt" />
+    <Content Include="Content\webcodecam\simple.html" />
+    <Content Include="Content\webcodecam\simple_buildselect.html" />
+    <Content Include="Content\webcodecam\simple_buildselect_jquery.html" />
+    <Content Include="Content\webcodecam\simple_jquery.html" />
+    <Content Include="Content\webcodecam\simple_localimage.html" />
+    <Content Include="favicon.ico" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Scripts\app.js" />
+    <Content Include="Scripts\app.min.js" />
+    <Content Include="Scripts\backstretch.js" />
+    <Content Include="Scripts\bootstrap-datetimepicker.js" />
+    <Content Include="Scripts\bootstrap-paginator.js" />
+    <Content Include="Scripts\bootstrap-select.js" />
+    <Content Include="Scripts\bootstrap-select.min.js" />
+    <Content Include="Content\bootstrap-select.css.map" />
+    <Content Include="Content\bootstrap\alerts.less" />
+    <Content Include="Content\bootstrap\badges.less" />
+    <Content Include="Content\bootstrap\bootstrap.less" />
+    <Content Include="Content\bootstrap\breadcrumbs.less" />
+    <Content Include="Content\bootstrap\button-groups.less" />
+    <Content Include="Content\bootstrap\buttons.less" />
+    <Content Include="Content\bootstrap\carousel.less" />
+    <Content Include="Content\bootstrap\close.less" />
+    <Content Include="Content\bootstrap\code.less" />
+    <Content Include="Content\bootstrap\component-animations.less" />
+    <Content Include="Content\bootstrap\dropdowns.less" />
+    <Content Include="Content\bootstrap\forms.less" />
+    <Content Include="Content\bootstrap\glyphicons.less" />
+    <Content Include="Content\bootstrap\grid.less" />
+    <Content Include="Content\bootstrap\input-groups.less" />
+    <Content Include="Content\bootstrap\jumbotron.less" />
+    <Content Include="Content\bootstrap\labels.less" />
+    <Content Include="Content\bootstrap\list-group.less" />
+    <Content Include="Content\bootstrap\media.less" />
+    <Content Include="Content\bootstrap\mixins.less" />
+    <Content Include="Content\bootstrap\mixins\alerts.less" />
+    <Content Include="Content\bootstrap\mixins\background-variant.less" />
+    <Content Include="Content\bootstrap\mixins\border-radius.less" />
+    <Content Include="Content\bootstrap\mixins\buttons.less" />
+    <Content Include="Content\bootstrap\mixins\center-block.less" />
+    <Content Include="Content\bootstrap\mixins\clearfix.less" />
+    <Content Include="Content\bootstrap\mixins\forms.less" />
+    <Content Include="Content\bootstrap\mixins\gradients.less" />
+    <Content Include="Content\bootstrap\mixins\grid-framework.less" />
+    <Content Include="Content\bootstrap\mixins\grid.less" />
+    <Content Include="Content\bootstrap\mixins\hide-text.less" />
+    <Content Include="Content\bootstrap\mixins\image.less" />
+    <Content Include="Content\bootstrap\mixins\labels.less" />
+    <Content Include="Content\bootstrap\mixins\list-group.less" />
+    <Content Include="Content\bootstrap\mixins\nav-divider.less" />
+    <Content Include="Content\bootstrap\mixins\nav-vertical-align.less" />
+    <Content Include="Content\bootstrap\mixins\opacity.less" />
+    <Content Include="Content\bootstrap\mixins\pagination.less" />
+    <Content Include="Content\bootstrap\mixins\panels.less" />
+    <Content Include="Content\bootstrap\mixins\progress-bar.less" />
+    <Content Include="Content\bootstrap\mixins\reset-filter.less" />
+    <Content Include="Content\bootstrap\mixins\reset-text.less" />
+    <Content Include="Content\bootstrap\mixins\resize.less" />
+    <Content Include="Content\bootstrap\mixins\responsive-visibility.less" />
+    <Content Include="Content\bootstrap\mixins\size.less" />
+    <Content Include="Content\bootstrap\mixins\tab-focus.less" />
+    <Content Include="Content\bootstrap\mixins\table-row.less" />
+    <Content Include="Content\bootstrap\mixins\text-emphasis.less" />
+    <Content Include="Content\bootstrap\mixins\text-overflow.less" />
+    <Content Include="Content\bootstrap\mixins\vendor-prefixes.less" />
+    <Content Include="Content\bootstrap\modals.less" />
+    <Content Include="Content\bootstrap\navbar.less" />
+    <Content Include="Content\bootstrap\navs.less" />
+    <Content Include="Content\bootstrap\normalize.less" />
+    <Content Include="Content\bootstrap\pager.less" />
+    <Content Include="Content\bootstrap\pagination.less" />
+    <Content Include="Content\bootstrap\panels.less" />
+    <Content Include="Content\bootstrap\popovers.less" />
+    <Content Include="Content\bootstrap\print.less" />
+    <Content Include="Content\bootstrap\progress-bars.less" />
+    <Content Include="Content\bootstrap\responsive-embed.less" />
+    <Content Include="Content\bootstrap\responsive-utilities.less" />
+    <Content Include="Content\bootstrap\scaffolding.less" />
+    <Content Include="Content\bootstrap\tables.less" />
+    <Content Include="Content\bootstrap\theme.less" />
+    <Content Include="Content\bootstrap\thumbnails.less" />
+    <Content Include="Content\bootstrap\tooltip.less" />
+    <Content Include="Content\bootstrap\type.less" />
+    <Content Include="Content\bootstrap\utilities.less" />
+    <Content Include="Content\bootstrap\variables.less" />
+    <Content Include="Content\bootstrap\wells.less" />
+    <Content Include="Content\font-awesome-4.7.0\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\font-awesome-4.7.0\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\font-awesome-4.7.0\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\font-awesome-4.7.0\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Content\font-awesome-4.7.0\fonts\FontAwesome.otf" />
+    <Content Include="Content\font-awesome-4.7.0\less\animated.less" />
+    <Content Include="Content\font-awesome-4.7.0\less\bordered-pulled.less" />
+    <Content Include="Content\font-awesome-4.7.0\less\core.less" />
+    <Content Include="Content\font-awesome-4.7.0\less\fixed-width.less" />
+    <Content Include="Content\font-awesome-4.7.0\less\font-awesome.less" />
+    <Content Include="Content\font-awesome-4.7.0\less\icons.less" />
+    <Content Include="Content\font-awesome-4.7.0\less\larger.less" />
+    <Content Include="Content\font-awesome-4.7.0\less\list.less" />
+    <Content Include="Content\font-awesome-4.7.0\less\mixins.less" />
+    <Content Include="Content\font-awesome-4.7.0\less\path.less" />
+    <Content Include="Content\font-awesome-4.7.0\less\rotated-flipped.less" />
+    <Content Include="Content\font-awesome-4.7.0\less\screen-reader.less" />
+    <Content Include="Content\font-awesome-4.7.0\less\stacked.less" />
+    <Content Include="Content\font-awesome-4.7.0\less\variables.less" />
+    <Content Include="Content\font-awesome-4.7.0\scss\font-awesome.scss" />
+    <Content Include="Content\font-awesome-4.7.0\scss\_animated.scss" />
+    <Content Include="Content\font-awesome-4.7.0\scss\_bordered-pulled.scss" />
+    <Content Include="Content\font-awesome-4.7.0\scss\_core.scss" />
+    <Content Include="Content\font-awesome-4.7.0\scss\_fixed-width.scss" />
+    <Content Include="Content\font-awesome-4.7.0\scss\_icons.scss" />
+    <Content Include="Content\font-awesome-4.7.0\scss\_larger.scss" />
+    <Content Include="Content\font-awesome-4.7.0\scss\_list.scss" />
+    <Content Include="Content\font-awesome-4.7.0\scss\_mixins.scss" />
+    <Content Include="Content\font-awesome-4.7.0\scss\_path.scss" />
+    <Content Include="Content\font-awesome-4.7.0\scss\_rotated-flipped.scss" />
+    <Content Include="Content\font-awesome-4.7.0\scss\_screen-reader.scss" />
+    <Content Include="Content\font-awesome-4.7.0\scss\_stacked.scss" />
+    <Content Include="Content\font-awesome-4.7.0\scss\_variables.scss" />
+    <Content Include="Content\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\fonts\FontAwesome.otf" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Content\lightbox-lite\fonts\lc_lightbox.eot" />
+    <Content Include="Content\lightbox-lite\fonts\lc_lightbox.ttf" />
+    <Content Include="Content\lightbox-lite\fonts\lc_lightbox.woff" />
+    <Content Include="Content\Responsive-Photo-Viewer\.babelrc" />
+    <Content Include="Content\Responsive-Photo-Viewer\.editorconfig" />
+    <Content Include="Content\Responsive-Photo-Viewer\.eslintrc" />
+    <Content Include="Content\Responsive-Photo-Viewer\.stylelintrc" />
+    <Content Include="Content\Responsive-Photo-Viewer\.travis.yml" />
+    <Content Include="Content\Responsive-Photo-Viewer\dist\photoviewer.css.map" />
+    <Content Include="Content\Responsive-Photo-Viewer\dist\photoviewer.js.map" />
+    <Content Include="Content\Responsive-Photo-Viewer\dist\photoviewer.min.css.map" />
+    <Content Include="Content\Responsive-Photo-Viewer\dist\photoviewer.min.js.map" />
+    <Content Include="Content\Responsive-Photo-Viewer\LICENSE" />
+    <Content Include="Content\Responsive-Photo-Viewer\package.json" />
+    <Content Include="Content\Responsive-Photo-Viewer\README.md" />
+    <Content Include="Content\Responsive-Photo-Viewer\src\sass\photoviewer.scss" />
+    <Content Include="Content\Responsive-Photo-Viewer\src\sass\_fullscreen.scss" />
+    <Content Include="Content\Responsive-Photo-Viewer\src\sass\_general.scss" />
+    <Content Include="Content\Responsive-Photo-Viewer\src\sass\_helpers.scss" />
+    <Content Include="Content\Responsive-Photo-Viewer\src\sass\_resizable.scss" />
+    <Content Include="Content\webcodecam\composer.json" />
+    <Content Include="Content\webcodecam\css\bootstrap.css.map" />
+    <Content Include="Content\webcodecam\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\webcodecam\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\webcodecam\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\webcodecam\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Content\webcodecam\README.md" />
+    <Content Include="Scripts\bootstrap-select.js.map" />
+    <Content Include="Scripts\bootstrap.bundle.js" />
+    <Content Include="Scripts\bootstrap.bundle.min.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\esm\popper-utils.js" />
+    <Content Include="Scripts\esm\popper-utils.min.js" />
+    <Content Include="Scripts\esm\popper.js" />
+    <Content Include="Scripts\esm\popper.min.js" />
+    <Content Include="Scripts\jquery-1.9.1.min.map" />
+    <Content Include="Scripts\jquery-2.2.4.min.map" />
+    <Content Include="Scripts\esm\popper.min.js.map" />
+    <Content Include="Scripts\esm\popper.js.map" />
+    <Content Include="Scripts\esm\popper-utils.min.js.map" />
+    <Content Include="Scripts\esm\popper-utils.js.map" />
+    <Content Include="Scripts\bootstrap.min.js.map" />
+    <Content Include="Scripts\bootstrap.js.map" />
+    <Content Include="Scripts\bootstrap.bundle.min.js.map" />
+    <Content Include="Scripts\bootstrap.bundle.js.map" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-reboot.min.css.map" />
+    <Content Include="Content\bootstrap-reboot.css.map" />
+    <Content Include="Content\bootstrap-grid.min.css.map" />
+    <Content Include="Content\bootstrap-grid.css.map" />
+    <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\demo.js" />
+    <Content Include="Scripts\DOTCommonConstant.js" />
+    <Content Include="Scripts\DOTCommonScript.js" />
+    <Content Include="Scripts\dot\GoogleMapSearch.js" />
+    <Content Include="Scripts\fontawesome-markers.js" />
+    <Content Include="Scripts\formValidation\bootstrapValidator.js" />
+    <Content Include="Scripts\formValidation\bootstrapValidator.min.js" />
+    <Content Include="Scripts\formValidation\language\ar_MA.js" />
+    <Content Include="Scripts\formValidation\language\be_FR.js" />
+    <Content Include="Scripts\formValidation\language\be_NL.js" />
+    <Content Include="Scripts\formValidation\language\bg_BG.js" />
+    <Content Include="Scripts\formValidation\language\ca_ES.js" />
+    <Content Include="Scripts\formValidation\language\cs_CZ.js" />
+    <Content Include="Scripts\formValidation\language\da_DK.js" />
+    <Content Include="Scripts\formValidation\language\de_DE.js" />
+    <Content Include="Scripts\formValidation\language\en_US.js" />
+    <Content Include="Scripts\formValidation\language\es_CL.js" />
+    <Content Include="Scripts\formValidation\language\es_ES.js" />
+    <Content Include="Scripts\formValidation\language\eu_ES.js" />
+    <Content Include="Scripts\formValidation\language\fa_IR.js" />
+    <Content Include="Scripts\formValidation\language\fi_FI.js" />
+    <Content Include="Scripts\formValidation\language\fr_FR.js" />
+    <Content Include="Scripts\formValidation\language\gr_EL.js" />
+    <Content Include="Scripts\formValidation\language\he_IL.js" />
+    <Content Include="Scripts\formValidation\language\hi_IN.js" />
+    <Content Include="Scripts\formValidation\language\hu_HU.js" />
+    <Content Include="Scripts\formValidation\language\id_ID.js" />
+    <Content Include="Scripts\formValidation\language\it_IT.js" />
+    <Content Include="Scripts\formValidation\language\ja_JP.js" />
+    <Content Include="Scripts\formValidation\language\nl_NL.js" />
+    <Content Include="Scripts\formValidation\language\no_NO.js" />
+    <Content Include="Scripts\formValidation\language\pl_PL.js" />
+    <Content Include="Scripts\formValidation\language\pt_BR.js" />
+    <Content Include="Scripts\formValidation\language\pt_PT.js" />
+    <Content Include="Scripts\formValidation\language\ro_RO.js" />
+    <Content Include="Scripts\formValidation\language\ru_RU.js" />
+    <Content Include="Scripts\formValidation\language\sk_SK.js" />
+    <Content Include="Scripts\formValidation\language\sq_AL.js" />
+    <Content Include="Scripts\formValidation\language\sr_RS.js" />
+    <Content Include="Scripts\formValidation\language\sv_SE.js" />
+    <Content Include="Scripts\formValidation\language\th_TH.js" />
+    <Content Include="Scripts\formValidation\language\tr_TR.js" />
+    <Content Include="Scripts\formValidation\language\ua_UA.js" />
+    <Content Include="Scripts\formValidation\language\vi_VN.js" />
+    <Content Include="Scripts\formValidation\language\zh_CN.js" />
+    <Content Include="Scripts\formValidation\language\zh_TW.js" />
+    <Content Include="Scripts\gmap-context-menu\gm-contextmenu.js" />
+    <Content Include="Scripts\gmap-context-menu\gmap-contextmenu.js" />
+    <Content Include="Scripts\google-chart-loader.js" />
+    <Content Include="Scripts\html2canvas.js" />
+    <Content Include="Scripts\i18n\defaults-ar_AR.js" />
+    <Content Include="Scripts\i18n\defaults-ar_AR.min.js" />
+    <Content Include="Scripts\i18n\defaults-bg_BG.js" />
+    <Content Include="Scripts\i18n\defaults-bg_BG.min.js" />
+    <Content Include="Scripts\i18n\defaults-cro_CRO.js" />
+    <Content Include="Scripts\i18n\defaults-cro_CRO.min.js" />
+    <Content Include="Scripts\i18n\defaults-cs_CZ.js" />
+    <Content Include="Scripts\i18n\defaults-cs_CZ.min.js" />
+    <Content Include="Scripts\i18n\defaults-da_DK.js" />
+    <Content Include="Scripts\i18n\defaults-da_DK.min.js" />
+    <Content Include="Scripts\i18n\defaults-de_DE.js" />
+    <Content Include="Scripts\i18n\defaults-de_DE.min.js" />
+    <Content Include="Scripts\i18n\defaults-en_US.js" />
+    <Content Include="Scripts\i18n\defaults-en_US.min.js" />
+    <Content Include="Scripts\i18n\defaults-es_CL.js" />
+    <Content Include="Scripts\i18n\defaults-es_CL.min.js" />
+    <Content Include="Scripts\i18n\defaults-es_ES.js" />
+    <Content Include="Scripts\i18n\defaults-es_ES.min.js" />
+    <Content Include="Scripts\i18n\defaults-et_EE.js" />
+    <Content Include="Scripts\i18n\defaults-et_EE.min.js" />
+    <Content Include="Scripts\i18n\defaults-eu.js" />
+    <Content Include="Scripts\i18n\defaults-eu.min.js" />
+    <Content Include="Scripts\i18n\defaults-fa_IR.js" />
+    <Content Include="Scripts\i18n\defaults-fa_IR.min.js" />
+    <Content Include="Scripts\i18n\defaults-fi_FI.js" />
+    <Content Include="Scripts\i18n\defaults-fi_FI.min.js" />
+    <Content Include="Scripts\i18n\defaults-fr_FR.js" />
+    <Content Include="Scripts\i18n\defaults-fr_FR.min.js" />
+    <Content Include="Scripts\i18n\defaults-hu_HU.js" />
+    <Content Include="Scripts\i18n\defaults-hu_HU.min.js" />
+    <Content Include="Scripts\i18n\defaults-id_ID.js" />
+    <Content Include="Scripts\i18n\defaults-id_ID.min.js" />
+    <Content Include="Scripts\i18n\defaults-it_IT.js" />
+    <Content Include="Scripts\i18n\defaults-it_IT.min.js" />
+    <Content Include="Scripts\i18n\defaults-ja_JP.js" />
+    <Content Include="Scripts\i18n\defaults-ja_JP.min.js" />
+    <Content Include="Scripts\i18n\defaults-kh_KM.js" />
+    <Content Include="Scripts\i18n\defaults-kh_KM.min.js" />
+    <Content Include="Scripts\i18n\defaults-ko_KR.js" />
+    <Content Include="Scripts\i18n\defaults-ko_KR.min.js" />
+    <Content Include="Scripts\i18n\defaults-lt_LT.js" />
+    <Content Include="Scripts\i18n\defaults-lt_LT.min.js" />
+    <Content Include="Scripts\i18n\defaults-nb_NO.js" />
+    <Content Include="Scripts\i18n\defaults-nb_NO.min.js" />
+    <Content Include="Scripts\i18n\defaults-nl_NL.js" />
+    <Content Include="Scripts\i18n\defaults-nl_NL.min.js" />
+    <Content Include="Scripts\i18n\defaults-pl_PL.js" />
+    <Content Include="Scripts\i18n\defaults-pl_PL.min.js" />
+    <Content Include="Scripts\i18n\defaults-pt_BR.js" />
+    <Content Include="Scripts\i18n\defaults-pt_BR.min.js" />
+    <Content Include="Scripts\i18n\defaults-pt_PT.js" />
+    <Content Include="Scripts\i18n\defaults-pt_PT.min.js" />
+    <Content Include="Scripts\i18n\defaults-ro_RO.js" />
+    <Content Include="Scripts\i18n\defaults-ro_RO.min.js" />
+    <Content Include="Scripts\i18n\defaults-ru_RU.js" />
+    <Content Include="Scripts\i18n\defaults-ru_RU.min.js" />
+    <Content Include="Scripts\i18n\defaults-sk_SK.js" />
+    <Content Include="Scripts\i18n\defaults-sk_SK.min.js" />
+    <Content Include="Scripts\i18n\defaults-sl_SI.js" />
+    <Content Include="Scripts\i18n\defaults-sl_SI.min.js" />
+    <Content Include="Scripts\i18n\defaults-sv_SE.js" />
+    <Content Include="Scripts\i18n\defaults-sv_SE.min.js" />
+    <Content Include="Scripts\i18n\defaults-tr_TR.js" />
+    <Content Include="Scripts\i18n\defaults-tr_TR.min.js" />
+    <Content Include="Scripts\i18n\defaults-ua_UA.js" />
+    <Content Include="Scripts\i18n\defaults-ua_UA.min.js" />
+    <Content Include="Scripts\i18n\defaults-vi_VN.js" />
+    <Content Include="Scripts\i18n\defaults-vi_VN.min.js" />
+    <Content Include="Scripts\i18n\defaults-zh_CN.js" />
+    <Content Include="Scripts\i18n\defaults-zh_CN.min.js" />
+    <Content Include="Scripts\i18n\defaults-zh_TW.js" />
+    <Content Include="Scripts\i18n\defaults-zh_TW.min.js" />
+    <Content Include="Scripts\jcarousel.responsive.js" />
+    <None Include="Scripts\jquery-1.9.1.intellisense.js" />
+    <Content Include="Scripts\jquery-1.9.1.js" />
+    <Content Include="Scripts\jquery-1.9.1.min.js" />
+    <None Include="Scripts\jquery-2.2.4-vsdoc.js" />
+    <None Include="Scripts\jquery-2.2.4.intellisense.js" />
+    <Content Include="Scripts\jquery-2.2.4.js" />
+    <Content Include="Scripts\jquery-2.2.4.min.js" />
+    <Content Include="Scripts\jquery-3.3.1.js" />
+    <Content Include="Scripts\jquery-3.4.1.js" />
+    <Content Include="Scripts\jquery-3.4.1.min.js" />
+    <Content Include="Scripts\jquery-3.4.1.slim.js" />
+    <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.base64.js" />
+    <Content Include="Scripts\jquery.jcarousel.js" />
+    <Content Include="Scripts\jquery.jcarousel.min.js" />
+    <Content Include="Scripts\jquery.signalR-2.2.3.js" />
+    <Content Include="Scripts\jquery.signalR-2.2.3.min.js" />
+    <Content Include="Scripts\jquery.table2excel.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Scripts\jquery.validate.hooks.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\jsoneditor.js" />
+    <Content Include="Scripts\jsts.min.js" />
+    <Content Include="Scripts\kartik-v-bootstrap-fileinput-da964b7\.gitignore" />
+    <Content Include="Scripts\kartik-v-bootstrap-fileinput-da964b7\css\fileinput-rtl.css" />
+    <Content Include="Scripts\kartik-v-bootstrap-fileinput-da964b7\css\fileinput-rtl.min.css" />
+    <Content Include="Scripts\kartik-v-bootstrap-fileinput-da964b7\css\fileinput.css" />
+    <Content Include="Scripts\kartik-v-bootstrap-fileinput-da964b7\css\fileinput.min.css" />
+    <Content Include="Scripts\kartik-v-bootstrap-fileinput-da964b7\img\loading-sm.gif" />
+    <Content Include="Scripts\kartik-v-bootstrap-fileinput-da964b7\img\loading.gif" />
+    <Content Include="Scripts\kartik-v-bootstrap-fileinput-da964b7\js\fileinput.js" />
+    <Content Include="Scripts\kartik-v-bootstrap-fileinput-da964b7\js\fileinput.min.js" />
+    <Content Include="Scripts\kartik-v-bootstrap-fileinput-da964b7\js\locales\ar.js" />
+    <Content Include="Scripts\kartik-v-bootstrap-fileinput-da964b7\js\locales\az.js" />
+    <Content Include="Scripts\kartik-v-bootstrap-fileinput-da964b7\js\locales\bg.js" />
+    <Content Include="Scripts\kartik-v-bootstrap-fileinput-da964b7\js\locales\ca.js" />
+    <Content Include="Scripts\kartik-v-bootstrap-fileinput-da964b7\js\locales\cr.js" />
+    <Content Include="Scripts\kartik-v-bootstrap-fileinput-da964b7\js\locales\cs.js" />
+    <Content Include="Scripts\kartik-v-bootstrap-fileinput-da964b7\js\locales\da.js" />
+    <Content Include="Scripts\kartik-v-bootstrap-fileinput-da964b7\js\locales\de.js" />
+    <Content Include="Scripts\kartik-v-bootstrap-fileinput-da964b7\js\locales\el.js" />
+    <Content Include="Scripts\kartik-v-bootstrap-fileinput-da964b7\js\locales\es.js" />
+    <Content Include="Scripts\kartik-v-bootstrap-fileinput-da964b7\js\locales\et.js" />
+    <Content Include="Scripts\kartik-v-bootstrap-fileinput-da964b7\js\locales\fa.js" />
+    <Content Include="Scripts\kartik-v-bootstrap-fileinput-da964b7\js\locales\fi.js" />
+    <Content Include="Scripts\kartik-v-bootstrap-fileinput-da964b7\js\locales\fr.js" />
+    <Content Include="Scripts\kartik-v-bootstrap-fileinput-da964b7\js\locales\gl.js" />
+    <Content Include="Scripts\kartik-v-bootstrap-fileinput-da964b7\js\locales\hu.js" />
+    <Content Include="Scripts\kartik-v-bootstrap-fileinput-da964b7\js\locales\id.js" />
+    <Content Include="Scripts\kartik-v-bootstrap-fileinput-da964b7\js\locales\it.js" />
+    <Content Include="Scripts\kartik-v-bootstrap-fileinput-da964b7\js\locales\ja.js" />
+    <Content Include="Scripts\kartik-v-bootstrap-fileinput-da964b7\js\locales\ka.js" />
+    <Content Include="Scripts\kartik-v-bootstrap-fileinput-da964b7\js\locales\kr.js" />
+    <Content Include="Scripts\kartik-v-bootstrap-fileinput-da964b7\js\locales\kz.js" />
+    <Content Include="Scripts\kartik-v-bootstrap-fileinput-da964b7\js\locales\LANG.js" />
+    <Content Include="Scripts\kartik-v-bootstrap-fileinput-da964b7\js\locales\lt.js" />
+    <Content Include="Scripts\kartik-v-bootstrap-fileinput-da964b7\js\locales\nl.js" />
+    <Content Include="Scripts\kartik-v-bootstrap-fileinput-da964b7\js\locales\no.js" />
+    <Content Include="Scripts\kartik-v-bootstrap-fileinput-da964b7\js\locales\pl.js" />
+    <Content Include="Scripts\kartik-v-bootstrap-fileinput-da964b7\js\locales\pt-BR.js" />
+    <Content Include="Scripts\kartik-v-bootstrap-fileinput-da964b7\js\locales\pt.js" />
+    <Content Include="Scripts\kartik-v-bootstrap-fileinput-da964b7\js\locales\ro.js" />
+    <Content Include="Scripts\kartik-v-bootstrap-fileinput-da964b7\js\locales\ru.js" />
+    <Content Include="Scripts\kartik-v-bootstrap-fileinput-da964b7\js\locales\sk.js" />
+    <Content Include="Scripts\kartik-v-bootstrap-fileinput-da964b7\js\locales\sl.js" />
+    <Content Include="Scripts\kartik-v-bootstrap-fileinput-da964b7\js\locales\sv.js" />
+    <Content Include="Scripts\kartik-v-bootstrap-fileinput-da964b7\js\locales\th.js" />
+    <Content Include="Scripts\kartik-v-bootstrap-fileinput-da964b7\js\locales\tr.js" />
+    <Content Include="Scripts\kartik-v-bootstrap-fileinput-da964b7\js\locales\uk.js" />
+    <Content Include="Scripts\kartik-v-bootstrap-fileinput-da964b7\js\locales\vi.js" />
+    <Content Include="Scripts\kartik-v-bootstrap-fileinput-da964b7\js\locales\zh-TW.js" />
+    <Content Include="Scripts\kartik-v-bootstrap-fileinput-da964b7\js\locales\zh.js" />
+    <Content Include="Scripts\kartik-v-bootstrap-fileinput-da964b7\js\plugins\piexif.js" />
+    <Content Include="Scripts\kartik-v-bootstrap-fileinput-da964b7\js\plugins\piexif.min.js" />
+    <Content Include="Scripts\kartik-v-bootstrap-fileinput-da964b7\js\plugins\purify.js" />
+    <Content Include="Scripts\kartik-v-bootstrap-fileinput-da964b7\js\plugins\purify.min.js" />
+    <Content Include="Scripts\kartik-v-bootstrap-fileinput-da964b7\js\plugins\sortable.js" />
+    <Content Include="Scripts\kartik-v-bootstrap-fileinput-da964b7\js\plugins\sortable.min.js" />
+    <Content Include="Scripts\kartik-v-bootstrap-fileinput-da964b7\themes\explorer-fa\theme.css" />
+    <Content Include="Scripts\kartik-v-bootstrap-fileinput-da964b7\themes\explorer-fa\theme.js" />
+    <Content Include="Scripts\kartik-v-bootstrap-fileinput-da964b7\themes\explorer-fa\theme.min.css" />
+    <Content Include="Scripts\kartik-v-bootstrap-fileinput-da964b7\themes\explorer-fa\theme.min.js" />
+    <Content Include="Scripts\kartik-v-bootstrap-fileinput-da964b7\themes\explorer\theme.css" />
+    <Content Include="Scripts\kartik-v-bootstrap-fileinput-da964b7\themes\explorer\theme.js" />
+    <Content Include="Scripts\kartik-v-bootstrap-fileinput-da964b7\themes\explorer\theme.min.css" />
+    <Content Include="Scripts\kartik-v-bootstrap-fileinput-da964b7\themes\explorer\theme.min.js" />
+    <Content Include="Scripts\kartik-v-bootstrap-fileinput-da964b7\themes\fa\theme.js" />
+    <Content Include="Scripts\kartik-v-bootstrap-fileinput-da964b7\themes\fa\theme.min.js" />
+    <Content Include="Scripts\kartik-v-bootstrap-fileinput-da964b7\themes\gly\theme.js" />
+    <Content Include="Scripts\kartik-v-bootstrap-fileinput-da964b7\themes\gly\theme.min.js" />
+    <Content Include="Scripts\lightbox-lite\alloy_finger.js" />
+    <Content Include="Scripts\lightbox-lite\alloy_finger.min.js" />
+    <Content Include="Scripts\lightbox-lite\jquery.js" />
+    <Content Include="Scripts\lightbox-lite\lc_lightbox.lite.js" />
+    <Content Include="Scripts\lightbox-lite\lc_lightbox.lite.min.js" />
+    <Content Include="Scripts\locale\vi.js" />
+    <Content Include="Scripts\Map.js" />
+    <Content Include="Scripts\markerwithlabel.js" />
+    <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\moment\moment-with-locales.js" />
+    <Content Include="Scripts\moment\moment.js" />
+    <Content Include="Scripts\pages\dashboard.js" />
+    <Content Include="Scripts\pages\dashboard2.js" />
+    <Content Include="Scripts\popper-utils.js" />
+    <Content Include="Scripts\popper-utils.min.js" />
+    <Content Include="Scripts\popper.js" />
+    <Content Include="Scripts\popper.min.js" />
+    <Content Include="Scripts\select2\select2.js" />
+    <Content Include="Scripts\select2\select2.multi-checkboxes.js" />
+    <Content Include="Scripts\sortable\Sortable.js" />
+    <Content Include="Scripts\tableExport.js" />
+    <Content Include="Scripts\tmpl\jquery.tmpl.js" />
+    <Content Include="Scripts\tmpl\jquery.tmpl.min.js" />
+    <Content Include="Scripts\tmpl\jquery.tmplPlus.js" />
+    <Content Include="Scripts\tmpl\jquery.tmplPlus.min.js" />
+    <Content Include="Scripts\umd\popper-utils.js" />
+    <Content Include="Scripts\umd\popper-utils.min.js" />
+    <Content Include="Scripts\umd\popper.js" />
+    <Content Include="Scripts\umd\popper.min.js" />
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\_BikeStations.cshtml" />
+    <Content Include="Views\Shared\_MapLayout.cshtml" />
+    <Content Include="Scripts\kartik-v-bootstrap-fileinput-da964b7\.github\CODE_OF_CONDUCT.md" />
+    <Content Include="Scripts\kartik-v-bootstrap-fileinput-da964b7\.github\CONTRIBUTING.md" />
+    <Content Include="Scripts\kartik-v-bootstrap-fileinput-da964b7\.github\ISSUE_TEMPLATE.md" />
+    <Content Include="Scripts\kartik-v-bootstrap-fileinput-da964b7\.github\PULL_REQUEST_TEMPLATE.md" />
+    <Content Include="Scripts\kartik-v-bootstrap-fileinput-da964b7\bower.json" />
+    <Content Include="Scripts\kartik-v-bootstrap-fileinput-da964b7\CHANGE.md" />
+    <Content Include="Scripts\kartik-v-bootstrap-fileinput-da964b7\composer.json" />
+    <Content Include="Scripts\kartik-v-bootstrap-fileinput-da964b7\LICENSE.md" />
+    <Content Include="Scripts\kartik-v-bootstrap-fileinput-da964b7\nuget\build.bat" />
+    <Content Include="Scripts\kartik-v-bootstrap-fileinput-da964b7\nuget\Package.nuspec" />
+    <Content Include="Scripts\kartik-v-bootstrap-fileinput-da964b7\package.json" />
+    <Content Include="Scripts\kartik-v-bootstrap-fileinput-da964b7\README.md" />
+    <Content Include="Scripts\kartik-v-bootstrap-fileinput-da964b7\scss\fileinput-rtl.scss" />
+    <Content Include="Scripts\kartik-v-bootstrap-fileinput-da964b7\scss\fileinput.scss" />
+    <Content Include="Scripts\kartik-v-bootstrap-fileinput-da964b7\scss\themes\explorer-fa\theme.scss" />
+    <Content Include="Scripts\kartik-v-bootstrap-fileinput-da964b7\scss\themes\explorer\theme.scss" />
+    <Content Include="Views\Home\_MarkerContent.cshtml" />
+    <Content Include="Views\Home\_ObjectTypes.cshtml" />
+    <Content Include="Views\Home\_RightClickContent.cshtml" />
+    <Content Include="Views\Home\_SearchResult.cshtml" />
+    <Content Include="Scripts\umd\popper.min.js.map" />
+    <Content Include="Scripts\umd\popper.js.map" />
+    <Content Include="Scripts\umd\popper-utils.min.js.map" />
+    <Content Include="Scripts\umd\popper-utils.js.map" />
+    <Content Include="Scripts\README.md" />
+    <Content Include="Scripts\popper.min.js.map" />
+    <Content Include="Scripts\popper.js.map" />
+    <Content Include="Scripts\popper-utils.min.js.map" />
+    <Content Include="Scripts\popper-utils.js.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Models\" />
+    <Folder Include="Views\Map\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+    <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.4.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Business\Business.csproj">
+      <Project>{585d41f2-7bc9-46cf-93a4-cd8e8a50fa76}</Project>
+      <Name>Business</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{A12929D3-6ED4-40E8-B6E0-0CFB323E0AB0}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Model\Model.csproj">
+      <Project>{eea74155-c038-4e37-81dd-b3b640369f0c}</Project>
+      <Name>Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="Scripts\index.d.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>61598</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:61598/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

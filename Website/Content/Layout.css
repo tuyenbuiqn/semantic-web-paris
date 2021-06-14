@@ -1,0 +1,40 @@
+﻿#line-chart {
+    height: 300px;
+    width: 800px;
+    margin: 0px auto;
+    margin-top: 1em;
+}
+
+.navbar-default .navbar-brand, .navbar-default .navbar-brand:hover {
+    color: #fff;
+}
+
+.modal-content {
+    padding: 0 15px;
+}
+
+.size80 {
+    width: 80%;
+}
+
+.size60 {
+    width: 60%;
+}
+
+.size50 {
+    width: 50%;
+}
+
+#contenthead {
+    /*background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #efeff0), color-stop(1, #fafafa));*/
+}
+
+#txtHead {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+}
+
+
+
