@@ -21,7 +21,7 @@
         $.ajax({
             type: "POST",
             url: '@Url.Action("SearchTrainStation","Home")',
-            data: { cityName: cityName, page:pageId},
+            data: { cityName: cityName, page: pageId, pageSize: 30},
             beforeSend: function () {
             }
         }).done(function (data) {
@@ -38,7 +38,7 @@
         $.ajax({
             type: "POST",
             url: '@Url.Action("SearchBikeStatation","Home")',
-            data: { cityName: cityName, page:pageId},
+            data: { cityName: cityName, page: pageId, pageSize: 30},
             beforeSend: function () {
             }
         }).done(function (data) {
@@ -56,7 +56,7 @@
         $.ajax({
             type: "POST",
             url: '@Url.Action("SearchHospital","Home")',
-            data: { cityName: cityName, page:pageId},
+            data: { cityName: cityName, page: pageId, pageSize: 30},
             beforeSend: function () {
             }
         }).done(function (data) {

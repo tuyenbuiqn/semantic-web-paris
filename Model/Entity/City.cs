@@ -20,11 +20,10 @@ namespace Model.Entity
             {
                 try
                 {
-
                     if (string.IsNullOrEmpty(Coordination))
-                        return new[] { 21.039396, 105.839908 };
+                        return new[] { MapConstants.DefaultLatitude, MapConstants.DefaultLongtitude };
                     var latData = Coordination.Substring(Coordination.IndexOf("(", StringComparison.Ordinal));
-                    latData = latData.Substring(0, Coordination.IndexOf(")", StringComparison.Ordinal));
+                    latData = latData.Substring(1, latData.IndexOf(")", StringComparison.Ordinal) - 1);
                     var arrLatData = latData.Split(' ');
                     var xLat = double.Parse(arrLatData[0]);
                     var xLng = double.Parse(arrLatData[1]);
@@ -32,8 +31,7 @@ namespace Model.Entity
                 }
                 catch (Exception e)
                 {
-                    return new[] { 21.039396, 105.839908 };
-
+                    return new[] { MapConstants.DefaultLatitude, MapConstants.DefaultLongtitude };
                 }
             }
         }
@@ -46,7 +44,7 @@ namespace Model.Entity
                 {
                     if (string.IsNullOrEmpty(Coordination))
                         return MapConstants.DefaultLatitude;
-                    return LatLng[0];
+                    return LatLng[1];
                 }
                 catch (Exception e)
                 {
@@ -62,7 +60,7 @@ namespace Model.Entity
                 {
                     if (string.IsNullOrEmpty(Coordination))
                         return MapConstants.DefaultLongtitude;
-                    return LatLng[1];
+                    return LatLng[0];
                 }
                 catch (Exception e)
                 {

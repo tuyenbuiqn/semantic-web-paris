@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\CommonFunctions.cs" />
     <Compile Include="Entity\BaseEntity.cs" />
     <Compile Include="Entity\BikeStation.cs" />
     <Compile Include="Entity\City.cs" />

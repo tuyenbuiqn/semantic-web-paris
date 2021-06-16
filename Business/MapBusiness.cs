@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Business.Interfaces;
 using Common.Constants;
+using Model.Common;
 using Model.Entity;
 using Model.Model;
 using Newtonsoft.Json;
@@ -95,39 +93,39 @@ namespace Business
                         }
                     },
                     MapCategoryIcons = new List<MapCategoryIcon>(),
-                   // MapCategories = CommonFunctions.MapCategoryEnumToListSelect2()
+                    MapCategories = CommonFunctions.MapCategoryEnumToListSelect2()
                 },
                 IsError = false,
                 Message = CommonConstants.Success
             };
 
-            //foreach (var mapCategory in result.Data.MapCategories)
-            //{
-            //    var item = new MapCategoryIcon()
-            //    {
-            //        MapCategory = mapCategory.Id,
-            //        Icon = new Icon()
-            //        {
-            //            Url = "/Content/images/markers/marker_" + mapCategory.Id + ".png",
-            //            Size = new IconSize()
-            //            {
-            //                Width = MapIconConstants.DefaultIconSizeWidth,
-            //                Height = MapIconConstants.DefaultIconSizeHeight
-            //            },
-            //            Anchor = new Point()
-            //            {
-            //                X = MapIconConstants.DefaultIconAnchorX,
-            //                Y = MapIconConstants.DefaultIconAnchorY
-            //            },
-            //            Origin = new Point()
-            //            {
-            //                X = MapIconConstants.DefaultIconOriginX,
-            //                Y = MapIconConstants.DefaultIconOriginY
-            //            }
-            //        }
-            //    };
-            //    result.Data.MapCategoryIcons.Add(item);
-            //}
+            foreach (var mapCategory in result.Data.MapCategories)
+            {
+                var item = new MapCategoryIcon()
+                {
+                    MapCategory = mapCategory.Id,
+                    Icon = new Icon()
+                    {
+                        Url = "/Content/images/markers/marker_" + mapCategory.Id + ".png",
+                        Size = new IconSize()
+                        {
+                            Width = MapIconConstants.DefaultIconSizeWidth,
+                            Height = MapIconConstants.DefaultIconSizeHeight
+                        },
+                        Anchor = new Point()
+                        {
+                            X = MapIconConstants.DefaultIconAnchorX,
+                            Y = MapIconConstants.DefaultIconAnchorY
+                        },
+                        Origin = new Point()
+                        {
+                            X = MapIconConstants.DefaultIconOriginX,
+                            Y = MapIconConstants.DefaultIconOriginY
+                        }
+                    }
+                };
+                result.Data.MapCategoryIcons.Add(item);
+            }
             return result;
         }
 

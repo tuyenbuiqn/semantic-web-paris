@@ -333,6 +333,20 @@ li.t-tab-disable {
     padding: 10px;
 }
 
+.table-responsive::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    background-color: #F5F5F5;
+}
+
+.table-responsive::-webkit-scrollbar {
+    width: 6px;
+    background-color: #F5F5F5;
+}
+
+.table-responsive::-webkit-scrollbar-thumb {
+    background-color: #000000;
+}
+
 .t-map-search-panel-object-container {
 }
 
@@ -1218,6 +1232,23 @@ span.star {
     overflow-x: hidden;
     background: #fff;
 }
+
+    #divSearchResult::-webkit-scrollbar-track {
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+        border-radius: 10px;
+        background-color: #F5F5F5;
+    }
+
+    #divSearchResult::-webkit-scrollbar {
+        width: 12px;
+        background-color: #F5F5F5;
+    }
+
+    #divSearchResult::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+        background-color: #555;
+    }
 
 /*#divSearchResult h3 {
         color: #fff;

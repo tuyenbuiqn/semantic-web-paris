@@ -14,7 +14,7 @@ namespace Model.Model
 
         public string SelectedCity { get; set; }
         public List<City> Cities { get; set; }
-        //public List<Select2Data> MapCategories { get; set; }
+        public List<Select2Data> MapCategories { get; set; }
 
         //public int DefaultSelectedDistrictId { get; set; }
         //public List<AdministrativeDivisionModel> Districts { get; set; }
@@ -89,7 +89,12 @@ namespace Model.Model
     //    public int Rating { get; set; }
     //    public string Description { get; set; }
     //}
-
+    public class Select2Data
+    {
+        public dynamic Id { get; set; }
+        public string Text { get; set; }
+        public List<Select2Data> Children { get; set; }
+    }
     public class MarkerLabel
     {
         public string LabelContent { get; set; }

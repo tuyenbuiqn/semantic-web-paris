@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="Constants\MapConstants.cs" />
     <Compile Include="Constants\SemanticConstants.cs" />
+    <Compile Include="Constants\SemanticEnums.cs" />
     <Compile Include="Constants\UiTextConfig.cs" />
     <Compile Include="Extensions\DataTableExtensions.cs" />
     <Compile Include="Extensions\EnumDescription.cs" />

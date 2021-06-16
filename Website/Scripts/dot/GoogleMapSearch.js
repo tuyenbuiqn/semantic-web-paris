@@ -710,24 +710,24 @@ function SearchMapByObjectOrAdDiv(searchType) {
     //searchData = [];
 
     //var cretia = { DistrictId: districtId, WardId: wardId, StreetId: streetId, ObjectName: objectNameSearch, ObjectTypeIds: objectTypeIds };
-    var cretia = { cityName:cityName };
-    var parameter = { PageIndex: 1, PageSize: DoTMaxPageSize, Cretia: cretia };
+    debugger;
+    var parameter = { page: 1, pageSize: DoTMaxPageSize, cityName: cityName };
 
-    //$.ajax({
-    //    //url: '@Url.Action("SearchMap", "Map")',
-    //    url: "/Home/SearchTrainStation",
-    //    type: "POST",
-    //    data: parameter,
-    //    success: function (data) {
-    //        if (!data.IsError) {
-    //            searchData = data.Data;
-    //            BindSearchDataToMap(searchData);
-    //            getSearchResult(searchData, 1);
-    //        }
-    //    },
-    //    error: function () {
-    //    }
-    //});
+    $.ajax({
+        //url: '@Url.Action("SearchMap", "Map")',
+        url: "/Home/SearchMap",
+        type: "POST",
+        data: parameter,
+        success: function (data) {
+            if (!data.IsError) {
+                searchData = data.Data;
+                BindSearchDataToMap(searchData);
+                //getSearchResult(searchData, 1);
+            }
+        },
+        error: function () {
+        }
+    });
     //var filteredGeoraphyByObjectType = FilterDataByObjectType(geographyData,mapCategories);
     //for (var k = 0; k < filteredGeoraphyByObjectType.length; k++) {
 
@@ -860,7 +860,7 @@ function SearchMapByDirection() {
 }
 
 function BindSearchDataToMap(searchData) {
-    // debugger;
+     debugger;
     if (searchData) {
         if (searchData.length > 0) {
             var i;

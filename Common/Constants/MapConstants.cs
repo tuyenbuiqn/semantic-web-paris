@@ -4,8 +4,8 @@
     {
         public const string DefaultFullAddress = "75 Đinh Tiên Hoàng, Tràng Tiền, Hoàn Kiếm, Hà Nội, Vietnam";
         public const string DefaultAddress = "75";
-        public const double DefaultLatitude = 21.039396;
-        public const double DefaultLongtitude = 105.839908;
+        public const double DefaultLatitude = 48.8589507;
+        public const double DefaultLongtitude = 2.2770197;
         public const int DefaultNationId = 33;
         public const int DefaultProvinceId = 37;
         public const int DefaultDistrictId = 149;
