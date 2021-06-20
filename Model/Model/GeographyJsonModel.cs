@@ -19,7 +19,7 @@ namespace Model.Model
         public string DetailData { get; set; }
         public int OTId { get; set; }
         public string OTName { get; set; }
-        public int OId { get; set; }
+        public string OId { get; set; }
         public long? PId { get; set; }
         public long? DId { get; set; }
         public long? WId { get; set; }
@@ -31,6 +31,8 @@ namespace Model.Model
         public string ImgUrl { get; set; }
         public MultiMediaGoogleMapObject MultiMedia => !string.IsNullOrEmpty(MultiMediaData) ? JsonConvert.DeserializeObject<MultiMediaGoogleMapObject>(MultiMediaData) : new MultiMediaGoogleMapObject();
         public decimal Distance { get; set; }
+
+        public GeographyDetailJsonModel ObjectDetail { get; set; }
     }
 
     public class MultiMediaGoogleMapObject
@@ -46,6 +48,8 @@ namespace Model.Model
         public string Mail { get; set; }
         public string Phone { get; set; }
         public string Web { get; set; }
+        public string Link { get; set; }
+        public string Infor { get; set; }
         public List<GeographyDetailPropertyJsonModel> Props { get; set; }
         public List<GeographyLinkJsonModel> Links { get; set; }
         [JsonIgnore]

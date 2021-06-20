@@ -33,7 +33,7 @@ namespace Website.Controllers
             ViewBag.SearchCityName = "LYON";
             var data = new Map()
             {
-                Cities = _cityBusiness.GetAll()
+                Cities = _cityBusiness.GetAll2()
             };
             return View(data);
         }
@@ -71,20 +71,52 @@ namespace Website.Controllers
             {
                 Lat = x.Lat,
                 Lng = x.Lng,
-                OTId = (int)MapCategoryEnum.TrainStation
+                OTId = (int)MapCategoryEnum.TrainStation,
+                OId = x.OId,
+                Name = x.StationLabel,
+                Addr = cityName,
+                ObjectDetail = new GeographyDetailJsonModel()
+                {
+                    Name = x.StationLabel,
+                    Link = x.StationUri,
+                    Mail = "mail@hust.edu.vn",
+                    Phone = "(+84) (024) 678.678"
+                }
             });
 
             var hospitals = _hospitalBusiness.GetByCity(cityName).Select(x => new GeographyJsonModel()
             {
                 Lat = x.Lat,
                 Lng = x.Lng,
-                OTId = (int)MapCategoryEnum.Hospital
+                OTId = (int)MapCategoryEnum.Hospital,
+                OId = x.OId,
+                Name = x.Label,
+                Addr = x.Address,
+                ObjectDetail = new GeographyDetailJsonModel()
+                {
+                    Name = x.Label,
+                    Link = x.Uri,
+                    Mail = "mail@hust.edu.vn",
+                    Phone = x.Telephone,
+                    Infor = x.MedicalSpecialty
+                }
             });
             var bikes = _bikeStationBusiness.GetByCity(cityName).Select(x => new GeographyJsonModel()
             {
                 Lat = x.Lat,
                 Lng = x.Lng,
-                OTId = (int)MapCategoryEnum.BikeStation
+                OTId = (int)MapCategoryEnum.BikeStation,
+                OId = x.OId,
+                Name = x.Label,
+                Addr = x.Address,
+                ObjectDetail = new GeographyDetailJsonModel()
+                {
+                    Name = x.Label,
+                    Link = x.Uri,
+                    Mail = "mail@hust.edu.vn",
+                    Phone = "(+84) (024) 678.678",
+                    Infor = $"Brand: {x.Brand} - Availability : {x.Availability} - Capacity: {x.Capacity}"
+                }
             });
 
             result.Data.AddRange(trains);

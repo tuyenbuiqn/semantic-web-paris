@@ -16,7 +16,9 @@ namespace Model.Entity
         public string Address{get;set;}
         public string Telephone{get;set;}
         public string MedicalSpecialty{get;set;}
+        public int OTId => (int)MapCategoryEnum.Hospital;
 
+        public string OId =>$"{Coordination}_{Uri}";
         public double[] LatLng
         {
             get

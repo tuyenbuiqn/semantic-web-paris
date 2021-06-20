@@ -722,7 +722,7 @@ function SearchMapByObjectOrAdDiv(searchType) {
             if (!data.IsError) {
                 searchData = data.Data;
                 BindSearchDataToMap(searchData);
-                //getSearchResult(searchData, 1);
+                getSearchResult(searchData, 1);
             }
         },
         error: function () {
@@ -917,12 +917,12 @@ function OnObjectNameResultSearch() {
 function ToggleSearchPanel() {
     var style = $("#pnlSearch").attr("style");
     if (!style) {
-        $("#h3SearchTitle").html("Mở khung tìm kiếm");
+        $("#h3SearchTitle").html("<i class=\"fa fa-angle-double-down fa-lg\"></i>");
     } else {
         if (style.indexOf("none") > -1) {
-            $("#h3SearchTitle").html("Đóng khung tìm kiếm");
+            $("#h3SearchTitle").html("<i class=\"fa fa-angle-double-up fa-lg\"></i>");
         } else {
-            $("#h3SearchTitle").html("Mở khung tìm kiếm");
+            $("#h3SearchTitle").html("<i class=\"fa fa-angle-double-up fa-lg\"></i>");
         }
     }
     $("#pnlSearch").fadeToggle("fast");

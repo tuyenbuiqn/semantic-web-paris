@@ -8,23 +8,23 @@
     <table class="table table-bordered table-hover">
         <thead>
             <tr>
-                <th>Uri</th>
                 <th>Label</th>
-                <th>Coordination</th>
+                @*<th>Coordination</th>*@
+                @*<th>Uri</th>*@
             </tr>
         </thead>
         <tbody>
             @foreach (var item in Model)
             {
-                <tr>
-                    <td>@item.Uri</td>
-                    <td>
-                        @item.Label
-                    </td>
-                    <td>
-                        @item.Coordination
-                    </td>
-                </tr>
+            <tr>
+                <td>
+                    <h4 class="label-title" onclick="SetCenterByLatLng('@(item.OTId)_@(item.OId)',@item.Lat,@item.Lng)">@item.Label</h4>
+                </td>
+                @*<td>
+                    @item.Coordination
+                </td>*@
+                @*<td>@item.Uri</td>*@
+            </tr>
             }
         </tbody>
     </table>

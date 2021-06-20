@@ -18,6 +18,8 @@ namespace Model.Entity
         public string Availability{get;set;}
         public string RecordedAt{get;set;}
 
+        public int OTId => (int)MapCategoryEnum.BikeStation;
+        public string OId =>$"{Coordination}_{Uri}";
 
         public double[] LatLng
         {

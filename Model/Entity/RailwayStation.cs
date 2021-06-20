@@ -85,5 +85,7 @@ namespace Model.Entity
                 }
             }
         }
+        public int OTId => (int)MapCategoryEnum.TrainStation;
+        public string OId =>$"{Coordination}_{StationUri}";
     }
 }
