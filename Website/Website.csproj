@@ -824,6 +824,7 @@
     <Content Include="Views\Home\_Script.cshtml" />
     <Content Include="Views\Home\_BikeStations.cshtml" />
     <Content Include="Views\Home\_Hospitals.cshtml" />
+    <Content Include="Views\Home\_Weather.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

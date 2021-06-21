@@ -1,0 +1,47 @@
+﻿<div class="report-container">
+    <h2><span id="wCity"></span>  Weather Status</h2>
+    <div class="time">
+        <div>@DateTime.Now.ToString("dddd hh:mm tt")</div>
+        <div>@DateTime.Now.ToString("dd MMMM yyyy")</div>
+        <div id="wDescription"></div>
+    </div>
+    <div class="weather-forecast">
+        <img id="wImg" src="http://openweathermap.org/img/w/016.png" class="weather-icon" />
+        <span id="wMaxNhietDo"></span> °C
+        <span class="min-temperature" id="wMinNhietDo"></span> °C
+    </div>
+    <div class="time">
+        <div>Humidity:<span id="wDoAm"></span>  %</div>
+        <div>Wind:<span id="wSucGio"></span>  km/h</div>
+    </div>
+</div>
+<style>
+    .report-container {
+        border: #E0E0E0 1px solid;
+        padding: 20px 40px 40px 40px;
+        border-radius: 2px;
+        margin: 0 auto;
+        color: #929292;
+    }
+
+    .weather-icon {
+        vertical-align: middle;
+        margin-right: 20px;
+    }
+
+    .weather-forecast {
+        color: #212121;
+        font-size: 1.2em;
+        font-weight: bold;
+        margin: 20px 0px;
+    }
+
+    span.min-temperature {
+        margin-left: 15px;
+        color: #929292;
+    }
+
+    .time {
+        line-height: 25px;
+    }
+</style>

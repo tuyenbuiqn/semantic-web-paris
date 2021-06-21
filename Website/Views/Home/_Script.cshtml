@@ -11,8 +11,33 @@
             else if (tab === "Bike station") {
                 searchBikeStation(1);
             }
+            else if (tab === "Weather") {
+                searchWeather();
+            }
         });
     });
+    function searchWeather() {
+        var cityName = $("#ddlCity").val();
+        if (cityName === '') return false;
+        $.ajax({
+            type: "GET",
+            url: 'https://api.openweathermap.org/data/2.5/weather?q=' + cityName +'&lang=en&units=metric&appid=ae133d7fc3811a3ba7592bfdb2bd1b75',
+            data: {},
+            beforeSend: function () {
+            }
+        }).done(function (data) {
+            if (data !== null && data !== undefined) {
+                $("#wCity").html(cityName);
+                $("#wImg").attr("src", "http://openweathermap.org/img/w/" + data.weather[0].icon + ".png");
+                $("#wDoAm").html(data.main.humidity);
+                $("#wSucGio").html(data.wind.speed);
+                $("#wMaxNhietDo").html(data.main.temp_max);
+                $("#wMinNhietDo").html(data.main.temp_min);
+                $("#wDescription").html(data.weather[0].description);
+            }
+        }).fail(function (jqXHR, textStatus) {
+        });
+    };
     function searchTrainStation(pageId) {
         var cityName = $("#ddlCity").val();
         if (cityName === "") return false;
