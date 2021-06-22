@@ -43,6 +43,14 @@
 </div>
 <script>
     $(function () {
+        var seen = {};
+        $('table tr').each(function () {
+            var txt = $(this).text();
+            if (seen[txt])
+                $(this).remove();
+            else
+                seen[txt] = true;
+        });
         $("#BikeStationPaper a").click(function () {
             if (this.href.length > 0) {
                 $.ajax({

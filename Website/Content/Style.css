@@ -384,24 +384,24 @@ li.t-tab-disable {
     padding-top: 10px;
 }
 
-    .t-map-search-result-container h5 {
-        margin-bottom: 0;
-        background: #fff;
-        margin-top: 0px;
-        text-transform: uppercase;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.2), 0 -1px 0px rgba(0,0,0,0.02);
-        width: 96%;
-        float: left;
-        border: 1px solid transparent;
-        margin: 0 2% 2% 2%;
-        color: #333;
-        font-size: 15px;
-        padding: 3% 2%;
-        cursor: pointer;
-        font-family: Roboto, Arial, sans-serif;
-        text-align: left;
-        font-weight: bold;
-    }
+h5.t-map-search-result-container {
+    margin-bottom: 0;
+    background: #fff;
+    margin-top: 0px;
+    text-transform: uppercase;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2), 0 -1px 0px rgba(0,0,0,0.02);
+    width: 96%;
+    float: left;
+    border: 1px solid transparent;
+    margin: 0 2% 2% 2%;
+    color: #333;
+    font-size: 15px;
+    padding: 3% 2%;
+    cursor: pointer;
+    font-family: Roboto, Arial, sans-serif;
+    text-align: left;
+    font-weight: bold;
+}
 
 p.t-search-result-load-more {
     text-align: center;
@@ -2186,6 +2186,7 @@ a.img-view:hover .t-multimedia-remove {
     padding: 30px 50px;
     background-image: none;
 }
+
 h4.label-title {
     margin: 0;
     padding: 0;
@@ -2193,4 +2194,5 @@ h4.label-title {
     color: cadetblue;
     font-weight: bold;
     cursor: pointer;
+    float:left;
 }

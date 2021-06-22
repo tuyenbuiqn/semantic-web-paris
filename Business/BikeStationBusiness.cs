@@ -95,8 +95,8 @@ namespace Business
                     CityName = cityName,
                     Brand = cityName.ToUpper() == SemanticConstants.Lyon ? item["brand"].ToString() : "VERT",
                     Address = cityName.ToUpper() == SemanticConstants.Lyon ? item["address"].ToString() : "N/A",
-                    RecordedAt = cityName.ToUpper() == SemanticConstants.Lyon ? "N/A" : item["recorderAt"].ToString(),
-                    Availability = cityName.ToUpper() == SemanticConstants.Lyon ? "N/A" : item["numOf"].ToString(),
+                    RecordedAt = cityName.ToUpper() == SemanticConstants.Lyon ? "N/A" : "",// item["recorderAt"].ToString(),
+                    Availability = cityName.ToUpper() == SemanticConstants.Lyon ? "N/A" : "",// item["numOf"].ToString(),
                     Capacity = item["capacity"].ToString(),
                 };
                 result.Add(city);

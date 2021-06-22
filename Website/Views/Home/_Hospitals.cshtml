@@ -18,7 +18,10 @@
             {
                 <tr>
                     <td>
-                        <h4 class="label-title" onclick="SetCenterByLatLng('@(item.OTId)_@(item.OId)',@item.Lat,@item.Lng)">@item.Label</h4>
+                        <h4 class="label-title" style="width: 100%;" onclick="SetCenterByLatLng('@(item.OTId)_@(item.OId)',@item.Lat,@item.Lng)">@item.Label</h4>
+                        <p style="font-size: 14px;padding-bottom: 0;margin-bottom: 0;margin-top: 3px;float: left;width: 100%;">
+                            <i class="fa fa-map-marker"></i> @item.Address
+                        </p>
                     </td>
                     @*<td>
                         @item.Coordination
@@ -45,6 +48,14 @@
 </div>
 <script>
     $(function () {
+        var seen = {};
+        //$('table tr').each(function () {
+        //    var txt = $(this).text();
+        //    if (seen[txt])
+        //        $(this).remove();
+        //    else
+        //        seen[txt] = true;
+        //});
         $("#HospitalPaper a").click(function () {
             if (this.href.length > 0) {
                 $.ajax({

@@ -16,19 +16,45 @@
         <tbody>
             @foreach (var item in Model)
             {
-            <tr>
-                <td>
-                    <h4 class="label-title" onclick="SetCenterByLatLng('@(item.OTId)_@(item.OId)',@item.Lat,@item.Lng)">@item.StationLabel</h4>
-                </td>
-                @*<td>
-                    @item.Coordination
-                </td>*@
-                @*<td> @item.StationUri</td>*@
-            </tr>
+                <tr>
+                    <td>
+                        <h4 class="label-title" onclick="SetCenterByLatLng('@(item.OTId)_@(item.OId)',@item.Lat,@item.Lng)">
+                            @item.StationLabel
+                        </h4>
+                        <a style="float: right;cursor: pointer;" onclick="ShowTimeTable('@item.BranchCode')">
+                            <i class="fa fa-calendar"></i>
+                        </a>
+
+                    </td>
+                    @*<td>
+                            @item.Coordination
+                        </td>*@
+                    @*<td> @item.StationUri</td>*@
+                </tr>
             }
         </tbody>
     </table>
 </div>
+
+<div class="modal" tabindex="-1" role="dialog" id="exampleModal">
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Realtime</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                @Html.Partial("_RealtimeStation")
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div id="TrainStationPaper" style="display: inline-block; vertical-align: middle;" class="text-right">
     @Html.PagedListPager(
         Model,
@@ -42,7 +68,52 @@
         )
 </div>
 <script>
+    function ShowTimeTable(branchCode) {
+        $("#tbody").html("");
+        let todayDate = new Date();
+        let preparedDateTime = todayDate.getFullYear() + (todayDate.getMonth() + 1) + todayDate.getDate()
+            + "T" + todayDate.getHours() + todayDate.getMinutes() + todayDate.getSeconds();
+        branchCode = branchCode.replace("OCE:SA", "SNCF");
+        $.ajax({
+            type: "GET",
+            url: "https://api.sncf.com/v1/coverage/sncf/stop_areas/" + branchCode + "/departures?datetime=" + preparedDateTime,
+            headers: { 'Authorization': '751ba723-0947-4f77-a1d0-936ab68b07a1' },
+            beforeSend: function () {
+            }
+        }).done(function (data) {
+            var dataX = "";
+            for (var i = 0; i < data.departures.length; i++) {
+                dataX += "<tr>";
+                dataX += " <td>" + (i + 1) + "</td>";
+                dataX += " <td>" + data.departures[i].display_informations.commercial_mode + " " + data.departures[i].display_informations.headsign + "</td>";
+                dataX += " <td>" + data.departures[i].display_informations.direction + "</td>";
+
+                var arrivalTime = data.departures[i].stop_date_time.base_arrival_date_time.substring(data.departures[i].stop_date_time.base_arrival_date_time.indexOf("T") + 1);
+                var departureTime = data.departures[i].stop_date_time.base_departure_date_time.substring(data.departures[i].stop_date_time.base_departure_date_time.indexOf("T") + 1);
+
+                dataX += " <td>" + arrivalTime.substring(0, 2) + ":" + arrivalTime.substring(2, 4) + ":" + arrivalTime.substring(4, 6) + "</td>";
+                dataX += " <td>" + departureTime.substring(0, 2) + ":" + departureTime.substring(2, 4) + ":" + departureTime.substring(4, 6) + "</td>";
+                dataX += " <td>" + data.departures[i].display_informations.network + "</td>";
+                dataX += " <td>" + data.departures[i].display_informations.label + "</td>";
+                dataX += "</tr>";
+            }
+            $("#tbody").html(dataX);
+            $("#exampleModal").modal("show");
+
+        }).fail(function (jqXHR, textStatus) {
+            alert("Không có dữ liệu");
+        });
+    };
     $(function () {
+        var seen = {};
+        $('table tr').each(function() {
+            var txt = $(this).text();
+            if (seen[txt])
+                $(this).remove();
+            else
+                seen[txt] = true;
+        });
+
         $("#TrainStationPaper a").click(function () {
             if (this.href.length > 0) {
                 $.ajax({

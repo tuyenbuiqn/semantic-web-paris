@@ -16,7 +16,7 @@
     <a class="t-map-result-toggle t-map-result-toggle-expand" id="toggleResult" title="Ẩn kết quả"></a>
     <div id="divSearchMenu" class="t-map-search-menu-container" style="display: none;">
         <div class="t-map-search-menu-title">
-            <h5>Loại tìm kiếm</h5>
+            <h5 class="t-map-search-result-container">Loại tìm kiếm</h5>
             <a href="javascript:void(0);" title="Ẩn menu loại tìm kiếm" id="hideSearchMenu">
                 <i class="fa fa-angle-double-left fa-lg"></i>
             </a>
@@ -56,8 +56,11 @@
                 <a href="javascript:void(0);" title="Hiện menu loại tìm kiếm" id="showSearchMenu">
                     <i class="fa fa-bars fa-lg"></i>
                 </a>
-                <h3 id="h3SearchTitle" onclick="ToggleSearchPanel();">
+                <h3 style="width: auto" id="h3SearchTitle" onclick="ToggleSearchPanel();">
                     <i class="fa fa-angle-double-up fa-lg"></i>
+                </h3>
+                <h3 style="width: auto" id="h3Add">
+                    <i class="fa fa-plus fa-lg"></i>
                 </h3>
             </div>
 
@@ -119,7 +122,7 @@
 
             </div>
             <div id="divSearchResultWrapper" class="t-map-search-result-container">
-                <h5>Kết quả tìm kiếm: <span id="spanSearchResultCount"></span></h5>
+                <h5 class="t-map-search-result-container">Kết quả tìm kiếm: <span id="spanSearchResultCount"></span></h5>
                 @*<div id="divObjectNameResultSearch" class="t-search-result-inbox">
                         <input type="text" id="objectNameResultSearch" onKeyUp="return OnObjectNameResultSearch(); " placeholder="Tìm kiếm nhanh" value="" />
                     </div>*@
