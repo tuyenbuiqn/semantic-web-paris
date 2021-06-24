@@ -188,6 +188,7 @@
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\formValidation\bootstrapValidator.css" />
     <Content Include="Content\formValidation\bootstrapValidator.min.css" />
+    <Content Include="Content\images\404.png" />
     <Content Include="Content\images\a01.png" />
     <Content Include="Content\images\background-color.png" />
     <Content Include="Content\images\BackGround\CTO\bg1.jpg" />
@@ -206,6 +207,7 @@
     <Content Include="Content\images\google-plus.png" />
     <Content Include="Content\images\Hanoi_Logo.svg.png" />
     <Content Include="Content\images\jsoneditor-icons.svg" />
+    <Content Include="Content\images\loadding.gif" />
     <Content Include="Content\images\loading-icons\images.txt" />
     <Content Include="Content\images\loading-icons\loading1.gif" />
     <Content Include="Content\images\loading-icons\loading10.gif" />
@@ -227,12 +229,15 @@
     <Content Include="Content\images\post3.jpg" />
     <Content Include="Content\images\success.png" />
     <Content Include="Content\images\twitter_circle_color.png" />
+    <Content Include="Content\images\user.png" />
+    <Content Include="Content\images\user2.png" />
     <Content Include="Content\images\Users\user-icon.png" />
     <Content Include="Content\images\vertical-alignment-bottom.png" />
     <Content Include="Content\images\vertical-alignment-center.png" />
     <Content Include="Content\images\vertical-alignment-top.png" />
     <Content Include="Content\images\vietnamtimeless.jpg" />
     <Content Include="Content\images\vietnamtimeless.png" />
+    <Content Include="Content\images\vnpt.png" />
     <Content Include="Content\ionicons.css" />
     <Content Include="Content\ionicons.min.css" />
     <Content Include="Content\jcarousel.responsive.css" />
@@ -356,6 +361,7 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Scripts\ajax.common.js" />
     <Content Include="Scripts\app.js" />
     <Content Include="Scripts\app.min.js" />
     <Content Include="Scripts\backstretch.js" />
@@ -826,6 +832,10 @@
     <Content Include="Views\Home\_Hospitals.cshtml" />
     <Content Include="Views\Home\_Weather.cshtml" />
     <Content Include="Views\Home\_RealtimeStation.cshtml" />
+    <Content Include="Views\Home\_AddHospital.cshtml" />
+    <Content Include="Views\Notification\_ErrorDialog.cshtml" />
+    <Content Include="Views\Notification\_SuccessDialog.cshtml" />
+    <Content Include="Views\Notification\_SuccessDialog2.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

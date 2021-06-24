@@ -3,7 +3,10 @@
 @{
     var cityName = ViewBag.SearchCityName;
 }
+
+
 <div class="clearfix"></div>
+
 <div class="table-responsive">
     <table class="table table-bordered table-hover">
         <thead>
@@ -16,15 +19,15 @@
         <tbody>
             @foreach (var item in Model)
             {
-            <tr>
-                <td>
-                    <h4 class="label-title" onclick="SetCenterByLatLng('@(item.OTId)_@(item.OId)',@item.Lat,@item.Lng)">@item.Label</h4>
-                </td>
-                @*<td>
-                    @item.Coordination
-                </td>*@
-                @*<td>@item.Uri</td>*@
-            </tr>
+                <tr>
+                    <td>
+                        <h4 class="label-title" onclick="SetCenterByLatLng('@(item.OTId)_@(item.OId)',@item.Lat,@item.Lng)">@item.Label</h4>
+                    </td>
+                    @*<td>
+                            @item.Coordination
+                        </td>*@
+                    @*<td>@item.Uri</td>*@
+                </tr>
             }
         </tbody>
     </table>
@@ -65,5 +68,6 @@
             };
             return false;
         });
+    
     });
 </script>

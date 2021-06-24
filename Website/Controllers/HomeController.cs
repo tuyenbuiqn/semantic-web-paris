@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web.Helpers;
 using System.Web.Mvc;
 using Business.Interfaces;
 using Common.Constants;
+using Model.Entity;
 using Model.Model;
 using PagedList;
 using VDS.RDF.Query;
@@ -43,6 +45,7 @@ namespace Website.Controllers
             ViewBag.SearchCityName = cityName;
             var data = _bikeStationBusiness.GetByCity(cityName);
             var pagedData = data.ToPagedList(page, pageSize);
+
             return PartialView("_BikeStations", pagedData);
         }
         public ActionResult SearchHospital(string cityName, int page, int pageSize = 30)
@@ -124,6 +127,39 @@ namespace Website.Controllers
             result.Data.AddRange(bikes);
 
             return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public ActionResult AddHospital(string cityName)
+        {
+            var model = new HospitalModel()
+            {
+                CityName = cityName
+            };
+            return PartialView("_AddHospital", model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult PAddHospital(HospitalModel parameter)
+        {
+            if (ModelState.IsValid)
+            {
+                var kq = _hospitalBusiness.AddHospital(parameter);
+                if (kq.IsError)
+                {
+                    ViewBag.UpdateMessage = "Có lỗi xảy ra";
+                    return PartialView("~/Views/Notification/_ErrorDialog.cshtml");
+
+                }
+                else
+                {
+                    ViewBag.UpdateMessage = "Cập nhật dữ liệu thành công";
+                    return PartialView("~/Views/Notification/_SuccessDialog.cshtml");
+                }
+            }
+            ViewBag.UpdateMessage = "Dữ liệu đầu vào chưa đúng";
+            return PartialView("~/Views/Notification/_ErrorDialog.cshtml");
         }
     }
 }

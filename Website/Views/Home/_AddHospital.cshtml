@@ -1,0 +1,106 @@
+﻿@model Model.Model.HospitalModel
+@using (Ajax.BeginForm("PAddHospital",
+new AjaxOptions()
+{
+UpdateTargetId = "#divshowmessage",
+InsertionMode = InsertionMode.Replace,
+OnSuccess = "callMessage(1,'Cập nhật thành công')",
+OnBegin = "$.callAjaxLoading(true);",
+    OnComplete = "$.callAjaxLoading(false);",
+    OnFailure = "$.callAjaxLoading(false);",
+    HttpMethod = "POST"
+}
+))
+{
+    @Html.AntiForgeryToken()
+    <div class="modal-body">
+        @Html.HiddenFor(m=>m.CityName)
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-horizontal">
+            <div class="row form-group">
+                <div class="col-md-3">
+                    @Html.LabelFor(m => m.HospitalName, new { @class = "control-label" })
+                </div>
+                <div class="col-md-9">
+                    @Html.TextBoxFor(m => m.HospitalName, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.HospitalName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-md-3">
+                    @Html.LabelFor(m => m.MedicalSpecialty, new { @class = "control-label" })
+                </div>
+                <div class="col-md-9">
+                    @Html.TextBoxFor(m => m.MedicalSpecialty, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.MedicalSpecialty, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-md-3">
+                    @Html.LabelFor(m => m.Address, new { @class = "control-label" })
+                </div>
+                <div class="col-md-9">
+                    @Html.TextBoxFor(m => m.Address, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Address, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-md-3">
+                    @Html.LabelFor(m => m.Telephone, new { @class = "control-label" })
+                </div>
+                <div class="col-md-9">
+                    @Html.TextBoxFor(m => m.Telephone, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Telephone, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-md-3">
+                    @Html.LabelFor(m => m.FaxNumber, new { @class = "control-label" })
+                </div>
+                <div class="col-md-9">
+                    @Html.TextBoxFor(m => m.FaxNumber, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.FaxNumber, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-md-3">
+                    @Html.LabelFor(m => m.Lat, new { @class = "control-label" })
+                </div>
+                <div class="col-md-9">
+                    @Html.TextBoxFor(m => m.Lat, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Lat, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-md-3">
+                    @Html.LabelFor(m => m.Lng, new { @class = "control-label" })
+                </div>
+                <div class="col-md-9">
+                    @Html.TextBoxFor(m => m.Lng, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Lng, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-md-3">
+                    @Html.LabelFor(m => m.BranchCode, new { @class = "control-label" })
+                </div>
+                <div class="col-md-9">
+                    @Html.TextBoxFor(m => m.BranchCode, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.BranchCode, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-md-3">
+                    @Html.LabelFor(m => m.Wikipedia, new { @class = "control-label" })
+                </div>
+                <div class="col-md-9">
+                    @Html.TextBoxFor(m => m.Wikipedia, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Wikipedia, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary pull-right">Cập nhật</button>
+    </div>
+}
+<script src="~/Scripts/jquery.validate.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>

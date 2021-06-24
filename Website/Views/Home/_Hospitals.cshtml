@@ -4,6 +4,25 @@
     var cityName = ViewBag.SearchCityName;
 }
 <div class="clearfix"></div>
+<div class="modal" tabindex="-1" role="dialog" id="divAddHospitalModal">
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Thêm bệnh viện</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="divAddHospitalContainer">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row" style="margin: 10px -15px">
+    <div class="col-sm-12">
+        <button class="btn btn-primary pull-right" id="btnAddHospital">Thêm mới</button>
+    </div>
+</div>
 <div class="table-responsive">
     <table class="table table-bordered table-hover">
         <thead>
@@ -20,7 +39,7 @@
                     <td>
                         <h4 class="label-title" style="width: 100%;" onclick="SetCenterByLatLng('@(item.OTId)_@(item.OId)',@item.Lat,@item.Lng)">@item.Label</h4>
                         <p style="font-size: 14px;padding-bottom: 0;margin-bottom: 0;margin-top: 3px;float: left;width: 100%;">
-                            <i class="fa fa-map-marker"></i> @item.Address
+                            <i class="fa fa-map-marker"></i><span>@item.Address</span>
                         </p>
                     </td>
                     @*<td>
@@ -49,13 +68,13 @@
 <script>
     $(function () {
         var seen = {};
-        //$('table tr').each(function () {
-        //    var txt = $(this).text();
-        //    if (seen[txt])
-        //        $(this).remove();
-        //    else
-        //        seen[txt] = true;
-        //});
+        $('table tr').each(function () {
+            var txt = $(this).find("td p span").text();
+            if (seen[txt])
+                $(this).remove();
+            else
+                seen[txt] = true;
+        });
         $("#HospitalPaper a").click(function () {
             if (this.href.length > 0) {
                 $.ajax({
@@ -69,6 +88,19 @@
                 });
             };
             return false;
+        });
+        $("#btnAddHospital").click(function () {
+            $.ajax({
+                type: "GET",
+                url: '@Url.Action("AddHospital","Home")',
+                data: {cityName:"@ViewBag.SearchCityName"},
+                beforeSend: function () {
+                }
+            }).done(function (data) {
+                $("#divAddHospitalContainer").html(data);
+                $("#divAddHospitalModal").modal("show");
+            }).fail(function (jqXHR, textStatus) {
+            });
         });
     });
 </script>

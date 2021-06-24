@@ -19,6 +19,7 @@
     function searchWeather() {
         var cityName = $("#ddlCity").val();
         if (cityName === '') return false;
+        $.callAjaxLoading(true);
         $.ajax({
             type: "GET",
             url: 'https://api.openweathermap.org/data/2.5/weather?q=' + cityName +'&lang=en&units=metric&appid=ae133d7fc3811a3ba7592bfdb2bd1b75',
@@ -35,7 +36,9 @@
                 $("#wMinNhietDo").html(data.main.temp_min);
                 $("#wDescription").html(data.weather[0].description);
             }
+            $.callAjaxLoading(false);
         }).fail(function (jqXHR, textStatus) {
+            $.callAjaxLoading(false);
         });
     };
     function searchTrainStation(pageId) {
@@ -43,6 +46,7 @@
         if (cityName === "") return false;
         $("#nav-train").html("");
 
+            $.callAjaxLoading(true);
         $.ajax({
             type: "POST",
             url: '@Url.Action("SearchTrainStation","Home")',
@@ -51,7 +55,9 @@
             }
         }).done(function (data) {
             $("#nav-train").html(data);
+            $.callAjaxLoading(false);
         }).fail(function (jqXHR, textStatus) {
+            $.callAjaxLoading(false);
         });
     };
 
@@ -59,7 +65,7 @@
         var cityName = $("#ddlCity").val();
         if (cityName === "") return false;
         $("#nav-bike").html("");
-
+            $.callAjaxLoading(true);
         $.ajax({
             type: "POST",
             url: '@Url.Action("SearchBikeStatation","Home")',
@@ -68,7 +74,9 @@
             }
         }).done(function (data) {
             $("#nav-bike").html(data);
+            $.callAjaxLoading(false);
         }).fail(function (jqXHR, textStatus) {
+            $.callAjaxLoading(false);
         });
     };
 
@@ -78,6 +86,7 @@
         if (cityName === "") return false;
         $("#nav-hospital").html("");
 
+            $.callAjaxLoading(true);
         $.ajax({
             type: "POST",
             url: '@Url.Action("SearchHospital","Home")',
@@ -86,7 +95,9 @@
             }
         }).done(function (data) {
             $("#nav-hospital").html(data);
+            $.callAjaxLoading(false);
         }).fail(function (jqXHR, textStatus) {
+            $.callAjaxLoading(false);
         });
     };
 </script>

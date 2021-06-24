@@ -1,0 +1,18 @@
+﻿@{
+    var currentDateTime = DateTime.Now.ToString("yyyyddMMHHmmss");
+}
+<div id="message_error_@currentDateTime" data-item="@Html.Raw(ViewBag.UpdateMessage)">
+</div>
+<script>
+    $(function () {
+        $.closeAllDialog();
+        var id =  "message_error_@currentDateTime";
+        var updateMessage = $("#" + id).attr("data-item");
+        var item = "<div id='message_error_" + @currentDateTime + "' class='alert alert-error " + id + " fade show alert-dismissible' role='alert'><a href='#' class='close' data-dismiss='alert' aria-label='close' title='đóng'>×</a>" + updateMessage + "</div>";
+        $("#divshowmessage ").append(item);
+        setTimeout(function () {
+            $("#divshowmessage ." + id).remove();
+        }, 12000);
+    });
+</script>
+

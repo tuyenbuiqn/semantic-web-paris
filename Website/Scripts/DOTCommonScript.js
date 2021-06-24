@@ -888,3 +888,22 @@ function PrintDiv(id) {
 //    window.print();
 //    document.body.innerHTML = originalContents;
 //}
+var countMessage = 1;
+function callMessage(type, message) {
+    countMessage += 1;
+    var item = "alert-success";
+    var idRemove = "message_" + countMessage;
+    var itemClass = "";
+    if (parseInt(type) === 1) {
+        itemClass = "alert-success";
+    } else {
+        itemClass = "alert-danger";
+    }
+    item = "<div id='message_" + countMessage + "' class='alert " + itemClass + " '><a href='#' class='close' data-dismiss='alert' aria-label='close' title='đóng'>×</a>" + message + "</div>";
+
+    $("#divshowmessage ").append(item);
+
+    setTimeout(function () {
+        $("#divshowmessage #" + idRemove).remove();
+    }, 6000);
+};

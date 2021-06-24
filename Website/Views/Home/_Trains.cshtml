@@ -74,6 +74,7 @@
         let preparedDateTime = todayDate.getFullYear() + (todayDate.getMonth() + 1) + todayDate.getDate()
             + "T" + todayDate.getHours() + todayDate.getMinutes() + todayDate.getSeconds();
         branchCode = branchCode.replace("OCE:SA", "SNCF");
+        $.callAjaxLoading(true);
         $.ajax({
             type: "GET",
             url: "https://api.sncf.com/v1/coverage/sncf/stop_areas/" + branchCode + "/departures?datetime=" + preparedDateTime,
@@ -88,8 +89,8 @@
                 dataX += " <td>" + data.departures[i].display_informations.commercial_mode + " " + data.departures[i].display_informations.headsign + "</td>";
                 dataX += " <td>" + data.departures[i].display_informations.direction + "</td>";
 
-                var arrivalTime = data.departures[i].stop_date_time.base_arrival_date_time.substring(data.departures[i].stop_date_time.base_arrival_date_time.indexOf("T") + 1);
-                var departureTime = data.departures[i].stop_date_time.base_departure_date_time.substring(data.departures[i].stop_date_time.base_departure_date_time.indexOf("T") + 1);
+                var arrivalTime = data.departures[i].stop_date_time.arrival_date_time.substring(data.departures[i].stop_date_time.arrival_date_time.indexOf("T") + 1);
+                var departureTime = data.departures[i].stop_date_time.departure_date_time.substring(data.departures[i].stop_date_time.departure_date_time.indexOf("T") + 1);
 
                 dataX += " <td>" + arrivalTime.substring(0, 2) + ":" + arrivalTime.substring(2, 4) + ":" + arrivalTime.substring(4, 6) + "</td>";
                 dataX += " <td>" + departureTime.substring(0, 2) + ":" + departureTime.substring(2, 4) + ":" + departureTime.substring(4, 6) + "</td>";
@@ -100,13 +101,15 @@
             $("#tbody").html(dataX);
             $("#exampleModal").modal("show");
 
+            $.callAjaxLoading(false);
         }).fail(function (jqXHR, textStatus) {
             alert("Không có dữ liệu");
+            $.callAjaxLoading(false);
         });
     };
     $(function () {
         var seen = {};
-        $('table tr').each(function() {
+        $('table tr').each(function () {
             var txt = $(this).text();
             if (seen[txt])
                 $(this).remove();

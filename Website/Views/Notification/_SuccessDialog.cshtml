@@ -1,0 +1,19 @@
+﻿@{
+    var currentDateTime = DateTime.Now.ToString("yyyyddMMHHmmss");
+    //var notCloseModal = ViewBag.NotCloseModal != null ? ViewBag.NotCloseModal : false;
+}
+<div id="message_@currentDateTime" data-item="@ViewBag.UpdateMessage">
+</div>
+<script>
+    $(function () {
+        $.closeAllDialog();
+        var id =  "message_@currentDateTime";
+        var updateMessage = $("#" + id).attr("data-item");
+        var item = "<div id='message_" + countMessage + "' class='alert alert-success " + id + " fade show alert-dismissible' role='alert'><a href='#' class='close' data-dismiss='alert' aria-label='close' title='đóng'>×</a>" + updateMessage + "</div>";
+        $("#divshowmessage ").append(item);
+        setTimeout(function () {
+            $("#divshowmessage ." + id).remove();
+        }, 6000);
+    });
+</script>
+

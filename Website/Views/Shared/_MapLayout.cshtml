@@ -8,9 +8,10 @@
     @Scripts.Render("~/bundles/PluginScript")
     @Scripts.Render("~/bundles/DoTScript")
     @Scripts.Render("~/bundles/tmpl")
+    <script src="~/Scripts/ajax.common.js"></script>
     @{
         var keys = new List<string>
-        {
+    {
             // OK
             "AIzaSyDgfxaXZG6Tu9UX5fI6dQ4k3zOHsGg-L60",
             // ROOT
@@ -28,6 +29,8 @@
 
 </head>
 <body class="theme-blue">
+    <div class="ajax" style="display: none;"></div>
+    <div id="divshowmessage" class="cssshowmessage"></div>
     <!--Notification-->
     <span id="doTNotification" style="display: none;"></span>
     <script type="text/x-kendo-template" id="doTErrorTemplate">

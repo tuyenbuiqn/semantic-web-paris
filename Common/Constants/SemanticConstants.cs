@@ -6,6 +6,7 @@ namespace Common.Constants
     public class SemanticConstants
     {
         public const string BaseUri = "http://localhost:7200/repositories/graphdb1";
+        public const string BaseUriStatements = "http://localhost:7200/repositories/graphdb1/statements";
         public const string UserNameGraphDb = "admin";
         public const string PasswordGraphDb = "admin";
 

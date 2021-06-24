@@ -710,7 +710,7 @@ function SearchMapByObjectOrAdDiv(searchType) {
     //searchData = [];
 
     //var cretia = { DistrictId: districtId, WardId: wardId, StreetId: streetId, ObjectName: objectNameSearch, ObjectTypeIds: objectTypeIds };
-    debugger;
+    //debugger;
     var parameter = { page: 1, pageSize: DoTMaxPageSize, cityName: cityName };
 
     $.ajax({
@@ -724,8 +724,10 @@ function SearchMapByObjectOrAdDiv(searchType) {
                 BindSearchDataToMap(searchData);
                 getSearchResult(searchData, 1);
             }
+            $.callAjaxLoading(false);
         },
         error: function () {
+            $.callAjaxLoading(false);
         }
     });
     //var filteredGeoraphyByObjectType = FilterDataByObjectType(geographyData,mapCategories);
@@ -860,7 +862,6 @@ function SearchMapByDirection() {
 }
 
 function BindSearchDataToMap(searchData) {
-     debugger;
     if (searchData) {
         if (searchData.length > 0) {
             var i;
