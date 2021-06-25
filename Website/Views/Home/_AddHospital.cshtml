@@ -2,11 +2,11 @@
 @using (Ajax.BeginForm("PAddHospital",
 new AjaxOptions()
 {
-UpdateTargetId = "#divshowmessage",
-InsertionMode = InsertionMode.Replace,
-OnSuccess = "callMessage(1,'Cập nhật thành công')",
-OnBegin = "$.callAjaxLoading(true);",
-    OnComplete = "$.callAjaxLoading(false);",
+    UpdateTargetId = "divAddHospitalContainer",
+    InsertionMode = InsertionMode.Replace,
+    OnSuccess = "$('#divAddHospitalModal').modal('hide');$.callAjaxLoading(false);",
+    OnComplete = "$('#divAddHospitalModal').modal('hide');$.callAjaxLoading(false);",
+    OnBegin = "$.callAjaxLoading(true);",
     OnFailure = "$.callAjaxLoading(false);",
     HttpMethod = "POST"
 }
@@ -14,7 +14,7 @@ OnBegin = "$.callAjaxLoading(true);",
 {
     @Html.AntiForgeryToken()
     <div class="modal-body">
-        @Html.HiddenFor(m=>m.CityName)
+        @Html.HiddenFor(m => m.CityName)
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-horizontal">
             <div class="row form-group">
@@ -104,3 +104,4 @@ OnBegin = "$.callAjaxLoading(true);",
 }
 <script src="~/Scripts/jquery.validate.js"></script>
 <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>

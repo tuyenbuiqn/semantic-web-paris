@@ -145,6 +145,7 @@ namespace Website.Controllers
         {
             if (ModelState.IsValid)
             {
+                //var kq = new ResultModel<bool>(false,"Cập nhật dữ liệu thành công",true); //_hospitalBusiness.AddHospital(parameter);
                 var kq = _hospitalBusiness.AddHospital(parameter);
                 if (kq.IsError)
                 {
