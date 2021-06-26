@@ -81,7 +81,8 @@ namespace Website.Controllers
                 ObjectDetail = new GeographyDetailJsonModel()
                 {
                     Name = x.StationLabel,
-                    Link = x.StationUri,
+                    //Link = x.StationUri,
+                    Link = x.CityUri,
                     Mail = "mail@hust.edu.vn",
                     Phone = "(+84) (024) 678.678"
                 }
@@ -98,7 +99,8 @@ namespace Website.Controllers
                 ObjectDetail = new GeographyDetailJsonModel()
                 {
                     Name = x.Label,
-                    Link = x.Uri,
+                    //Link = x.Uri,
+                    Link = x.CityUri,
                     Mail = "mail@hust.edu.vn",
                     Phone = x.Telephone,
                     Infor = x.MedicalSpecialty
@@ -115,7 +117,8 @@ namespace Website.Controllers
                 ObjectDetail = new GeographyDetailJsonModel()
                 {
                     Name = x.Label,
-                    Link = x.Uri,
+                    //Link = x.Uri,
+                    Link = x.CityUri,
                     Mail = "mail@hust.edu.vn",
                     Phone = "(+84) (024) 678.678",
                     Infor = $"Brand: {x.Brand} - Availability : {x.Availability} - Capacity: {x.Capacity}"
